@@ -1,0 +1,57 @@
+{
+  "sites": [
+    {
+      "id": "test-site",
+      "name": "Testanlegg",
+      "address": "Testmiljø · ingen fysisk adresse",
+      "is_test": true,
+      "description": "Testanlegg for å vise plattformstruktur. Ikke tilkoblet fysisk utstyr."
+    }
+  ],
+  "reports": [
+    {
+      "id": "test-report",
+      "title": "Testrapport – klargjøring av anlegg",
+      "status": "ready",
+      "content": "TESTRAPPORT — IKKE EN DRIFTSVURDERING\n\nAnlegg: Testanlegg\nFormål: Vise hvordan dokumentasjon presenteres i Envatec.\n\n1. Status\nAnlegget er opprettet som et testmiljø. Ingen fysisk WAGO, Belimo-enhet eller MQTT-datakilde er tilkoblet. Driftsstatus er derfor ukjent.\n\n2. Måledata\nTemperatur, flow, termisk effekt og energiforbruk: ikke tilgjengelig.\nDet er ikke beregnet forbruk, besparelser eller energieffektivitet.\n\n3. Alarmer og avvik\nIngen alarmkilde er tilkoblet. Fravær av alarmer bekrefter ikke normal drift.\n\n4. Anbefalte neste steg\nRegistrer et faktisk anlegg og målepunktene.\nAvklar datatilgang fra WAGO/Belimo.\nKoble til innsamling og kontroller enheter, klokke og målekvalitet.\nSamle tilstrekkelig historikk før drifts- eller energianalyse.\n\n5. Avgrensning\nRapporten demonstrerer rapportvisningen. Automatisk rapportgenerering og AI-analyse er ikke aktivert. Plattformen har kun lesetilgang.",
+      "site_id": "test-site",
+      "summary": "TEST · Eksempel på rapportformat. Ingen reelle målinger eller energiberegninger inngår.",
+      "findings": [
+        {
+          "check": "Kontroller samtidig tur/retur, flow og varmebehov. Vurder innregulering, bypass og ventilfunksjon før tiltak.",
+          "title": "Lav temperaturdifferanse",
+          "severity": "warning",
+          "component": "exchanger",
+          "explanation": "Illustrasjon: Når tur og retur ligger tett, kan varmeavgivelsen være lav eller vannmengden for høy. Dette kan også være normalt ved liten last. Ingen slik feil er målt i testanlegget.",
+          "illustrative": true
+        },
+        {
+          "check": "Se tidsstempel og datakvalitet. Kontroller føler, kabling og mapping i gateway. Sammenlign med en referansemåling.",
+          "title": "Manglende eller usikker returføler",
+          "severity": "warning",
+          "component": "return",
+          "explanation": "Illustrasjon: Uten en pålitelig returtemperatur kan temperaturdifferanse og energivurdering bli misvisende. Datamangel skal vises som ukjent, ikke som normal drift.",
+          "illustrative": true
+        },
+        {
+          "check": "Sammenlign driftsmelding med flow og differansetrykk. Kontroller avstengninger og luft. Arbeid på anlegget utføres av kvalifisert personell.",
+          "title": "Pumpedrift uten bekreftet vannmengde",
+          "severity": "critical",
+          "component": "pump",
+          "explanation": "Illustrasjon: En driftsmelding fra pumpen bekrefter ikke alene at vann sirkulerer. Lav flow kan skyldes flere forhold og må undersøkes.",
+          "illustrative": true
+        },
+        {
+          "check": "Krever gyldig tidsstempel, forventet intervall og god datakvalitet før meldingen kan brukes som faktisk status.",
+          "title": "Bekreftet kommunikasjon",
+          "severity": "normal",
+          "component": "gateway",
+          "explanation": "Illustrasjon av en grønn melding: I et tilkoblet anlegg kan dette bety at data nylig er mottatt og kontrollert. Testanlegget har ingen aktiv datakilde; grønnfargen her er kun et eksempel.",
+          "illustrative": true
+        }
+      ],
+      "period_end": "2026-09-18T00:00:00+00:00",
+      "period_start": "2026-09-17T00:00:00+00:00"
+    }
+  ]
+}

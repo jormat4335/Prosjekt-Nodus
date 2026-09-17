@@ -1,6 +1,6 @@
-# Nodus Drift
+# Envatec Drift
 
-Første versjon av en lesebasert driftsplattform for VVS/anlegg. Norsk grensesnitt, Supabase Auth og organisasjonsisolerte data. Ingen simulator, eksempelanlegg eller kontrollkommandoer.
+Første versjon av en lesebasert driftsplattform for VVS/anlegg. Norsk grensesnitt, Supabase Auth og organisasjonsisolerte data. Ett tydelig merket testanlegg og én testrapport, opprettet etter brukerens ønske. Ingen simulerte sensorverdier eller kontrollkommandoer.
 
 ## Funksjoner
 
@@ -17,7 +17,7 @@ Krever Node 22 eller nyere. `npm ci`, kopier `.env.example` til `.env`, deretter
 
 ## Infrastruktur
 
-Supabase: Prosjekt (`vcwvlsnlzayrcyjdufbt`). Railway: Nodus Drift. GitHub: jormat4335/Prosjekt-Nodus.
+Supabase: Prosjekt (`vcwvlsnlzayrcyjdufbt`). Railway: Envatec Drift. GitHub: jormat4335/Prosjekt-Nodus.
 
 Sett `VITE_SUPABASE_URL` og `VITE_SUPABASE_PUBLISHABLE_KEY` som Railway servicevariabler. Disse er offentlige klientverdier og bygges inn i nettleserpakken. ALDRI legg service-role/secret-nøkler i `VITE_`-variabler. Dockerfile bygger og serverer appen som uprivilegert bruker. Railway leser railway.toml. Endring av klientvariabler krever ny bygging.
 
@@ -40,3 +40,5 @@ En separat serverprosess skal abonnere på tillatte MQTT-topics og mappe kilde-I
 Alarmmotor og rapportgenerator kobles til senere som separate skriveprosesser. AI-resultater lagres i analysis_runs, skal være rådgivende og krever særskilt aktivering. Ingen tabeller eller endepunkter for ventil-/pumpestyring er laget.
 
 For stor datamengde bør historikk få serverbasert tidsaggregering, lagringspolicy og partisjonering før produksjonsinnsamling skaleres.
+
+Første bruker og organisasjon er opprettet. Førstegangsaktivering bruker en engangs invitasjonstoken i URL-fragmentet, deretter velger brukeren eget passord. Tokenet lagres ikke i Git. Det midlertidige oppsett-endepunktet er deaktivert og returnerer 410.

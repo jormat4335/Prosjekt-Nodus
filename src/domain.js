@@ -7,7 +7,10 @@ export function readingState(reading, sensor, now = Date.now()) {
   return 'fresh';
 }
 export function siteState(sensors, readings, alarms, now = Date.now()) {
-  if (alarms.some(a=>a.state==='active')) return 'alarm';
+  const active=alarms.filter(a=>a.state==='active');
+  if (active.some(a=>!a.severity||a.severity==='critical')) return 'alarm';
+  if (active.some(a=>a.severity==='warning')) return 'warning';
+  if (active.length) return 'info';
   if (!sensors.length || sensors.some(s=>readingState(readings.find(r=>r.sensor_id===s.id),s,now)!=='fresh')) return 'unknown';
   return 'normal';
 }

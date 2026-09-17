@@ -11,7 +11,7 @@ create index organization_members_user_idx on public.organization_members(user_i
 create table public.sites (
  id uuid primary key default gen_random_uuid(), organization_id uuid not null references public.organizations(id),
  name text not null, address text, description text, timezone text not null default 'Europe/Oslo',
- created_at timestamptz not null default now(), unique(organization_id,id)
+ created_at timestamptz not null default now(), is_test boolean not null default false, unique(organization_id,id)
 );
 create table public.integrations (
  id uuid primary key default gen_random_uuid(), organization_id uuid not null, site_id uuid not null,
@@ -39,6 +39,7 @@ create table public.readings (
  foreign key(organization_id,site_id,sensor_id) references public.sensors(organization_id,site_id,id)
 );
 create index readings_scope_time_idx on public.readings(organization_id,site_id,observed_at desc);
+create index readings_sensor_scope_idx on public.readings(organization_id,site_id,sensor_id);
 create table public.alarms (
  id uuid primary key default gen_random_uuid(), organization_id uuid not null, site_id uuid not null, sensor_id uuid,
  title text not null, description text, severity text not null check(severity in ('critical','warning','info')),
@@ -58,7 +59,7 @@ create table public.reports (
  title text not null, period_start timestamptz not null, period_end timestamptz not null,
  created_at timestamptz not null default now(),
  status text not null default 'draft' check(status in ('draft','ready','failed')),
- summary text, content text, check(period_end > period_start),
+ summary text, content text, findings jsonb not null default '[]'::jsonb check(jsonb_typeof(findings)='array'), check(period_end > period_start),
  foreign key(organization_id,site_id) references public.sites(organization_id,id)
 );
 create table public.analysis_runs (
@@ -93,4 +94,3 @@ revoke all on public.organizations,public.organization_members,public.sites,publ
 grant select on public.organizations,public.organization_members,public.sites,public.integrations,public.sensors,public.readings,public.alarms,public.events,public.reports,public.analysis_runs,public.latest_readings to authenticated;
 comment on table public.integrations is 'Read-only acquisition metadata. Credentials belong in server secrets, never in this table.';
 comment on table public.analysis_runs is 'Reserved for future advisory AI analysis. No actuation or control commands.';
-

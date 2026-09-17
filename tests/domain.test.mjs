@@ -21,3 +21,8 @@ test('zero is a valid fresh reading and active alarms take precedence',()=>{
 test('external names and report content cannot inject HTML',()=>{
  assert.equal(escapeHtml('<script>"x"</script>'), '&lt;script&gt;&quot;x&quot;&lt;/script&gt;');
 });
+test('warning and information do not masquerade as critical alarms',()=>{
+ assert.equal(siteState([sensor],[fresh],[{state:'active',severity:'warning'}],now),'warning');
+ assert.equal(siteState([sensor],[fresh],[{state:'active',severity:'info'}],now),'info');
+ assert.equal(siteState([sensor],[fresh],[{state:'active',severity:'warning'},{state:'active',severity:'critical'}],now),'alarm');
+});
