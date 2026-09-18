@@ -2,56 +2,337 @@
   "sites": [
     {
       "id": "test-site",
-      "name": "Testanlegg",
-      "address": "Testmiljø · ingen fysisk adresse",
+      "name": "Testanlegg – Energiovervåking",
+      "address": "Testmiljø · simulert teknisk anlegg",
       "is_test": true,
-      "description": "Testanlegg for å vise plattformstruktur. Ikke tilkoblet fysisk utstyr."
+      "description": "Simulert testanlegg med to Belimo Energy Valve-kurser. Ingen fysisk styring eller live-data."
+    }
+  ],
+  "integrations": [
+    {
+      "id": "bev-east",
+      "site_id": "test-site",
+      "name": "Belimo Energy Valve – Kurs 1",
+      "kind": "belimo",
+      "enabled": true,
+      "last_seen_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "id": "bev-west",
+      "site_id": "test-site",
+      "name": "Belimo Energy Valve – Kurs 2",
+      "kind": "belimo",
+      "enabled": true,
+      "last_seen_at": "2026-09-18T11:28:00+02:00"
+    }
+  ],
+  "sensors": [
+    {
+      "id": "c1-flow",
+      "site_id": "test-site",
+      "integration_id": "bev-east",
+      "name": "Kurs 1 · Flow",
+      "metric": "flow",
+      "unit": "m³/h",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c1-supply",
+      "site_id": "test-site",
+      "integration_id": "bev-east",
+      "name": "Kurs 1 · Turtemperatur",
+      "metric": "supply_temperature",
+      "unit": "°C",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c1-return",
+      "site_id": "test-site",
+      "integration_id": "bev-east",
+      "name": "Kurs 1 · Returtemperatur",
+      "metric": "return_temperature",
+      "unit": "°C",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c1-dt",
+      "site_id": "test-site",
+      "integration_id": "bev-east",
+      "name": "Kurs 1 · ΔT",
+      "metric": "delta_t",
+      "unit": "K",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c1-power",
+      "site_id": "test-site",
+      "integration_id": "bev-east",
+      "name": "Kurs 1 · Termisk effekt",
+      "metric": "thermal_power",
+      "unit": "kW",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c1-valve",
+      "site_id": "test-site",
+      "integration_id": "bev-east",
+      "name": "Kurs 1 · Ventilstilling",
+      "metric": "valve_position",
+      "unit": "%",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c2-flow",
+      "site_id": "test-site",
+      "integration_id": "bev-west",
+      "name": "Kurs 2 · Flow",
+      "metric": "flow",
+      "unit": "m³/h",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c2-supply",
+      "site_id": "test-site",
+      "integration_id": "bev-west",
+      "name": "Kurs 2 · Turtemperatur",
+      "metric": "supply_temperature",
+      "unit": "°C",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c2-return",
+      "site_id": "test-site",
+      "integration_id": "bev-west",
+      "name": "Kurs 2 · Returtemperatur",
+      "metric": "return_temperature",
+      "unit": "°C",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c2-dt",
+      "site_id": "test-site",
+      "integration_id": "bev-west",
+      "name": "Kurs 2 · ΔT",
+      "metric": "delta_t",
+      "unit": "K",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c2-power",
+      "site_id": "test-site",
+      "integration_id": "bev-west",
+      "name": "Kurs 2 · Termisk effekt",
+      "metric": "thermal_power",
+      "unit": "kW",
+      "stale_after_seconds": 604800
+    },
+    {
+      "id": "c2-valve",
+      "site_id": "test-site",
+      "integration_id": "bev-west",
+      "name": "Kurs 2 · Ventilstilling",
+      "metric": "valve_position",
+      "unit": "%",
+      "stale_after_seconds": 604800
+    }
+  ],
+  "latest_readings": [
+    {
+      "site_id": "test-site",
+      "sensor_id": "c1-flow",
+      "value": 4.35,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c1-supply",
+      "value": 52.4,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c1-return",
+      "value": 43.7,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c1-dt",
+      "value": 8.7,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c1-power",
+      "value": 44,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c1-valve",
+      "value": 72,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c2-flow",
+      "value": 6.8,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c2-supply",
+      "value": 52.1,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c2-return",
+      "value": 46.7,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c2-dt",
+      "value": 5.4,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c2-power",
+      "value": 42.7,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-site",
+      "sensor_id": "c2-valve",
+      "value": 88,
+      "quality": "good",
+      "observed_at": "2026-09-18T11:28:00+02:00"
+    }
+  ],
+  "alarms": [
+    {
+      "id": "test-alarm-1",
+      "site_id": "test-site",
+      "sensor_id": "c2-dt",
+      "title": "Kurs 2 · fallende ΔT-trend",
+      "description": "Simulert analyse: ΔT har falt fra 8,1 K til 5,4 K over 7 døgn samtidig som flow har økt.",
+      "severity": "warning",
+      "state": "active",
+      "occurred_at": "2026-09-18T10:00:00+02:00"
+    }
+  ],
+  "events": [
+    {
+      "id": "evt1",
+      "site_id": "test-site",
+      "kind": "analysis",
+      "message": "Simulert energiavvik identifisert på Kurs 2: høyere flow og lavere ΔT enn baseline.",
+      "occurred_at": "2026-09-18T10:00:00+02:00"
+    },
+    {
+      "id": "evt2",
+      "site_id": "test-site",
+      "kind": "data",
+      "message": "Begge Belimo Energy Valve-enheter rapporterer komplette måleverdier.",
+      "occurred_at": "2026-09-18T09:00:00+02:00"
     }
   ],
   "reports": [
     {
       "id": "test-report",
-      "title": "Testrapport – klargjøring av anlegg",
+      "title": "Energi- og driftsrapport · 2 × Belimo Energy Valve",
       "status": "ready",
-      "content": "TESTRAPPORT — IKKE EN DRIFTSVURDERING\n\nAnlegg: Testanlegg\nFormål: Vise hvordan dokumentasjon presenteres i Envatec.\n\n1. Status\nAnlegget er opprettet som et testmiljø. Ingen fysisk WAGO, Belimo-enhet eller MQTT-datakilde er tilkoblet. Driftsstatus er derfor ukjent.\n\n2. Måledata\nTemperatur, flow, termisk effekt og energiforbruk: ikke tilgjengelig.\nDet er ikke beregnet forbruk, besparelser eller energieffektivitet.\n\n3. Alarmer og avvik\nIngen alarmkilde er tilkoblet. Fravær av alarmer bekrefter ikke normal drift.\n\n4. Anbefalte neste steg\nRegistrer et faktisk anlegg og målepunktene.\nAvklar datatilgang fra WAGO/Belimo.\nKoble til innsamling og kontroller enheter, klokke og målekvalitet.\nSamle tilstrekkelig historikk før drifts- eller energianalyse.\n\n5. Avgrensning\nRapporten demonstrerer rapportvisningen. Automatisk rapportgenerering og AI-analyse er ikke aktivert. Plattformen har kun lesetilgang.",
       "site_id": "test-site",
-      "summary": "TEST · Eksempel på rapportformat. Ingen reelle målinger eller energiberegninger inngår.",
+      "summary": "TEST · Kurs 1 ligger nær forventet drift. Kurs 2 viser høyere varmeeffekt enn baseline kombinert med økende flow og fallende ΔT.",
+      "period_start": "2026-09-11T00:00:00+02:00",
+      "period_end": "2026-09-18T00:00:00+02:00",
+      "energy_summary": {
+        "actual_kwh": 895,
+        "expected_kwh": 780,
+        "deviation_pct": 14.7,
+        "headline": "115 kWh høyere varmebruk enn forventet i analyseperioden",
+        "confidence": "middels"
+      },
+      "courses": [
+        {
+          "id": "course-1",
+          "name": "Kurs 1 · Ventilasjonsvarme øst",
+          "device": "Belimo Energy Valve 1",
+          "status": "normal",
+          "power_kw": 44,
+          "expected_power_kw": 42.5,
+          "power_deviation_pct": 3.5,
+          "flow_m3h": 4.35,
+          "delta_t_k": 8.7,
+          "delta_t_7d_start": 8.9,
+          "energy_24h_kwh": 462,
+          "valve_pct": 72,
+          "note": "Effekt, flow og ΔT følger forventet sammenheng. Ingen tydelig negativ trend i perioden."
+        },
+        {
+          "id": "course-2",
+          "name": "Kurs 2 · Ventilasjonsvarme vest",
+          "device": "Belimo Energy Valve 2",
+          "status": "warning",
+          "power_kw": 42.7,
+          "expected_power_kw": 34.5,
+          "power_deviation_pct": 23.8,
+          "flow_m3h": 6.8,
+          "delta_t_k": 5.4,
+          "delta_t_7d_start": 8.1,
+          "energy_24h_kwh": 433,
+          "valve_pct": 88,
+          "note": "Varmeeffekten ligger ca. 24 % over baseline. Samtidig har flow økt og ΔT falt fra 8,1 K til 5,4 K."
+        }
+      ],
       "findings": [
         {
-          "check": "Kontroller samtidig tur/retur, flow og varmebehov. Vurder innregulering, bypass og ventilfunksjon før tiltak.",
-          "title": "Lav temperaturdifferanse",
+          "title": "Kurs 2 bruker mer varmeeffekt enn forventet",
           "severity": "warning",
           "component": "exchanger",
-          "explanation": "Illustrasjon: Når tur og retur ligger tett, kan varmeavgivelsen være lav eller vannmengden for høy. Dette kan også være normalt ved liten last. Ingen slik feil er målt i testanlegget.",
+          "explanation": "Simulert analyse: Målt effekt er 42,7 kW mot en forventet baseline på 34,5 kW ved tilsvarende drift. Det tilsvarer omtrent 24 % høyere momentan varmeeffekt.",
+          "check": "Kontroller om varmebehov, settpunkt og driftstid faktisk tilsier lasten. Sammenlign med utetemperatur, romtemperatur og tidsprogram før tiltak.",
           "illustrative": true
         },
         {
-          "check": "Se tidsstempel og datakvalitet. Kontroller føler, kabling og mapping i gateway. Sammenlign med en referansemåling.",
-          "title": "Manglende eller usikker returføler",
+          "title": "ΔT på Kurs 2 har en negativ trend",
           "severity": "warning",
           "component": "return",
-          "explanation": "Illustrasjon: Uten en pålitelig returtemperatur kan temperaturdifferanse og energivurdering bli misvisende. Datamangel skal vises som ukjent, ikke som normal drift.",
+          "explanation": "Simulert analyse: Temperaturdifferansen har falt fra 8,1 K til 5,4 K gjennom analyseperioden samtidig som flow har økt. Det kan tyde på over-sirkulasjon, redusert varmeavgivelse eller endret regulering.",
+          "check": "Sammenlign ventilposisjon, flow, tur/retur og varmebehov. Kontroller innregulering, bypass, ventilautoritet og om batteriet faktisk tar ut forventet effekt.",
           "illustrative": true
         },
         {
-          "check": "Sammenlign driftsmelding med flow og differansetrykk. Kontroller avstengninger og luft. Arbeid på anlegget utføres av kvalifisert personell.",
-          "title": "Pumpedrift uten bekreftet vannmengde",
-          "severity": "critical",
-          "component": "pump",
-          "explanation": "Illustrasjon: En driftsmelding fra pumpen bekrefter ikke alene at vann sirkulerer. Lav flow kan skyldes flere forhold og må undersøkes.",
-          "illustrative": true
-        },
-        {
-          "check": "Krever gyldig tidsstempel, forventet intervall og god datakvalitet før meldingen kan brukes som faktisk status.",
-          "title": "Bekreftet kommunikasjon",
+          "title": "Kurs 1 følger forventet drift",
           "severity": "normal",
-          "component": "gateway",
-          "explanation": "Illustrasjon av en grønn melding: I et tilkoblet anlegg kan dette bety at data nylig er mottatt og kontrollert. Testanlegget har ingen aktiv datakilde; grønnfargen her er kun et eksempel.",
+          "component": "valve",
+          "explanation": "Simulert analyse: Effektavviket er kun +3,5 %, og ΔT ligger stabilt rundt 8,7 K. Dette brukes som en referanse for hvordan en frisk kurs kan presenteres.",
+          "check": "Ingen tiltak foreslått. Fortsett trendovervåking og bruk kursen som intern sammenligningsreferanse.",
+          "illustrative": true
+        },
+        {
+          "title": "Mulig unødvendig pumpearbeid på Kurs 2",
+          "severity": "warning",
+          "component": "pump",
+          "explanation": "Simulert analyse: Kurs 2 flytter 6,8 m³/h med lavere ΔT enn Kurs 1. Dersom varmebehovet ikke har økt tilsvarende, kan mer vann sirkuleres enn nødvendig.",
+          "check": "Les pumpeturtall, elektrisk effekt og differansetrykk sammen med samlet ventilåpning. Bekreft før eventuell optimalisering.",
           "illustrative": true
         }
       ],
-      "period_end": "2026-09-18T00:00:00+00:00",
-      "period_start": "2026-09-17T00:00:00+00:00"
+      "content": "TESTRAPPORT — SIMULERTE DATA\\n\\nHOVEDKONKLUSJON\\nKurs 1 fremstår stabil og nær forventet energiytelse. Kurs 2 skiller seg ut med høyere varmeeffekt, høyere vannmengde og en fallende ΔT-trend. Kombinasjonen er mer interessant enn hvert enkelt signal alene.\\n\\nENERGIBILDE\\nBeregnet varmebruk i analyseperioden: 895 kWh. Baseline for tilsvarende drift: 780 kWh. Simulert avvik: +115 kWh / +14,7 %. Dette er et analyseavvik, ikke dokumentert besparelsespotensial.\\n\\nKURS 1\\nBelimo Energy Valve 1 viser 44,0 kW, 4,35 m³/h og ΔT 8,7 K. Forventet effekt er 42,5 kW. Avviket er lite, og utviklingen er stabil.\\n\\nKURS 2\\nBelimo Energy Valve 2 viser 42,7 kW, 6,8 m³/h og ΔT 5,4 K. Forventet effekt er 34,5 kW. Samtidig har ΔT falt fra 8,1 K til 5,4 K de siste sju dagene. Dette gir et mønster som bør undersøkes nærmere.\\n\\nMULIGE FORKLARINGER\\n• For høy flow i forhold til faktisk varmebehov.\\n• Endret ventilregulering eller svak ventilautoritet.\\n• Bypass eller hydraulisk kortslutning.\\n• Redusert varmeavgivelse i batteri/veksler.\\n• Lengre driftstid eller høyere settpunkt enn baseline.\\n\\nANBEFALT KONTROLL\\nSammenlign kurs 2 mot utetemperatur, romtemperatur, tidsprogram og pumpens elektriske effekt. Kontroller deretter ventilfunksjon, innregulering og eventuell bypass. AI-funnet skal brukes som prioritering av kontroll, ikke som automatisk diagnose.\\n\\nAVGRENSNING\\nAlle tall i denne rapporten er testdata. Plattformen har kun overvåking og sender ingen kommandoer til anlegget."
     }
   ]
 }
