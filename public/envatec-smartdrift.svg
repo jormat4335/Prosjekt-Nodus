@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 150" role="img" aria-labelledby="title desc">
+<title id="title">Envatec Smartdrift</title>
+<desc id="desc">ENVATEC med trefarget symbol og teksten SMARTDRIFT</desc>
+<g fill="none" fill-rule="evenodd">
+  <g transform="translate(472 8)">
+    <path d="M68 4c29 0 54 14 68 37l-36 22c-6-10-18-17-31-17-20 0-36 16-36 36H0C0 39 30 4 68 4Z" fill="#F36A2B"/>
+    <path d="M0 82C0 44 30 13 68 13v33c-20 0-36 16-36 36 0 13 7 24 17 31l-22 36C10 135 0 110 0 82Z" fill="#67B44C"/>
+    <path d="M27 149l22-36c6 4 12 6 20 6 20 0 36-16 36-36 0-7-2-14-6-20l36-22c9 13 14 29 14 42 0 38-30 68-68 68-20 0-39-8-54-22Z" fill="#164A86"/>
+  </g>
+  <text x="6" y="86" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="700" letter-spacing="2">ENVATEC</text>
+  <text x="213" y="126" fill="#A7B4C2" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="600" letter-spacing="6">SMARTDRIFT</text>
+</g>
+</svg>
