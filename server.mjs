@@ -20,4 +20,4 @@ createServer(async(req,res)=>{
     res.setHeader('Content-Type',type);res.setHeader('Cache-Control',pathname.startsWith('/assets/')?'public, max-age=31536000, immutable':'no-store');
     res.end(req.method==='HEAD'?undefined:body);
   } catch {res.writeHead(500);res.end('Kunne ikke laste siden.');}
-}).listen(Number(process.env.PORT)||3000,'0.0.0.0',()=>console.log('Nodus Drift: http://localhost:'+(process.env.PORT||3000)));
+}).listen(Number(process.env.PORT)||3000,'0.0.0.0',()=>console.log('Envatec Smartdrift: http://localhost:'+(process.env.PORT||3000)));
