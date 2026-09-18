@@ -58,3 +58,14 @@
   .sidebar .brand-logo-image{width:155px}
   .login-story .brand-logo-image{width:240px}
 }
+
+
+/* Transparent Envatec logo */
+.logo-brand,.login-story .logo-brand,.sidebar .logo-brand{
+  background:transparent!important;
+  padding:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.sidebar .brand-logo-image{width:190px}
+.login-story .brand-logo-image{width:330px;max-width:min(330px,82vw)}
