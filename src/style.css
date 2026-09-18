@@ -25,3 +25,36 @@
 .trend-line i{display:block;height:100%;background:#7aa98f;border-radius:999px}
 .course-card.warning .trend-line i{background:#c69b37}
 @media(max-width:1000px){.energy-summary-grid{grid-template-columns:repeat(2,1fr)}.course-grid{grid-template-columns:1fr}.course-kpis{grid-template-columns:repeat(2,1fr)}}
+
+
+/* Envatec logo asset */
+.logo-brand{
+  background:#fff;
+  border-radius:8px;
+  padding:8px 10px;
+  width:max-content;
+  max-width:100%;
+  letter-spacing:0;
+  line-height:0;
+}
+.brand-logo-image{
+  display:block;
+  width:190px;
+  max-width:100%;
+  height:auto;
+}
+.login-story .logo-brand{
+  padding:10px 14px;
+}
+.login-story .brand-logo-image{
+  width:320px;
+  max-width:min(320px,80vw);
+}
+@media(max-width:1050px){
+  .sidebar .brand-logo-image{width:165px}
+}
+@media(max-width:760px){
+  .sidebar .logo-brand{padding:6px 8px}
+  .sidebar .brand-logo-image{width:155px}
+  .login-story .brand-logo-image{width:240px}
+}
