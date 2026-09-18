@@ -18,3 +18,34 @@ body{background:#111315}.sidebar{background:#0d0f11;border-right:1px solid #2529
 .trend-line{background:#343b38}
 .finding-card p,.finding-action p,.component-info p{color:#cbd4cf}
 .finding-card h3,.component-info strong{color:#f0f3f1}
+
+
+/* Navy dashboard refresh */
+:root{background:#08111f;--surface:#101a27;--line:#223149;--muted:#8da0b7;--accent:#72b4ff}
+body{background:#08111f}
+.main-area{background:linear-gradient(180deg,#091321 0%,#0b1420 100%)}
+.sidebar{background:linear-gradient(180deg,#08111e 0%,#0b1727 100%);border-right-color:#1b2a41;color:#a9b8c9}
+.topbar{background:#0c1623;border-color:#1e2c42}
+.workspace{background:#10233a;border-color:#24415f}
+nav a{color:#9fb0c4}
+nav a>span{color:#7f95ad}
+nav a.active{background:#142b46;color:#e0efff;box-shadow:inset 3px 0 #5aa8ff}
+nav a.active>span{color:#75b7ff}
+nav a:hover{background:#10243a}
+.panel,.stat{background:#101a27;border-color:#213149}
+.panel-title{border-color:#223249}
+.future{background:#112238}
+.text-link{color:#8fc4ff}
+.secondary{background:#132033;border-color:#2b3e58;color:#d7e6f7}
+.table-wrap{background:#101a27}
+th{background:#0d1724;color:#7f95ad}
+td{border-color:#223149;color:#cbd8e6}
+input,select{background:#0c1622;border-color:#2a3c55;color:#e5eef8}
+.chart .grid{stroke:#25364f}
+.chart text{fill:#8fa5bc}
+.notice{background:#102439;border-color:#24445f;color:#bdd6ee}
+.tag{background:#14283c;color:#a9bfd4}
+.login-story{background:linear-gradient(160deg,#08111e 0%,#0e1d31 100%)}
+.preview-note{background:#10243a;border-color:#24415f;color:#bcd8f2}
+.energy-summary-grid article,.course-card,.course-kpis div{background:#121f2e;border-color:#263a53}
+.trend-line{background:#24364b}
