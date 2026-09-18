@@ -2,3 +2,26 @@
 @media(min-width:1500px){.content{padding-top:35px}.stat{padding:25px}.empty{min-height:280px}}
 @media(max-width:1050px){.sidebar{width:205px;padding-left:12px;padding-right:12px}.main-area{margin-left:205px}.brand{font-size:15px;gap:7px}.content{padding:20px}.topbar{padding:0 20px}.stat{padding:15px}.two-col{grid-template-columns:1fr 1fr}.integration-cards{gap:12px}.integration{padding:17px}.login-story{padding:35px}}
 @media(max-width:760px){.app-layout{display:block}.sidebar{position:static;width:auto;padding:17px}.sidebar .brand{margin-bottom:20px}.workspace,.nav-label,.sidebar-bottom{display:none}.sidebar nav{display:flex;overflow-x:auto;gap:5px}.sidebar nav a{flex-shrink:0;padding:9px;font-size:11px}.sidebar nav a>span,.sidebar nav small{display:none}.main-area{margin:0}.topbar{height:60px;padding:0 18px}.topbar .connection,.topbar .muted,.slash{display:none}.content{padding:15px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat strong{font-size:28px}.two-col,.integration-cards{grid-template-columns:1fr;gap:0}.preview-note span{display:block;margin:7px 0 0}.toolbar{font-size:9px}h1{font-size:26px}.panel-title{padding:18px}.filters{flex-wrap:wrap;padding:17px}.filters label,.filters label:first-child{min-width:0;width:100%}.chart-meta{flex-direction:column}.analysis{padding:30px 20px}.analysis-topics{flex-direction:column;gap:8px}.login-layout{grid-template-columns:1fr}.login-story{padding:25px}.login-story>div,.login-story>small{display:none}.login-story .brand{margin:0}.login-form{padding:35px 25px}.empty{min-height:230px}th,td{padding:14px}.top-actions{gap:8px}}
+
+
+.energy-report{padding:0 24px 4px}
+.energy-summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 20px}
+.energy-summary-grid article{background:#f7faf8;border:1px solid #e2e9e5;border-radius:6px;padding:16px}
+.energy-summary-grid span,.course-kpis span,.delta-trend>span{display:block;font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:#7c8d85}
+.energy-summary-grid strong{display:block;font-size:22px;margin:8px 0 6px}
+.energy-summary-grid small,.delta-trend small{font-size:10px;color:#88978f;line-height:1.5}
+.energy-summary-grid .energy-warn{background:#fff8e7;border-color:#ead89f}
+.course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:24px}
+.course-card{border:1px solid #e0e7e3;border-radius:7px;padding:18px;background:#fff}
+.course-card.warning{border-color:#d6c180;background:#fffdf6}
+.course-card.normal{border-color:#cfe1d6;background:#fbfdfb}
+.course-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+.course-head h3{font-size:15px;margin:10px 0 0}
+.course-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.course-kpis div{background:#f7faf8;border-radius:5px;padding:11px}
+.course-kpis strong{display:block;font-size:16px;margin-top:6px}
+.delta-trend{margin-top:15px;padding-top:14px;border-top:1px solid #edf1ef}
+.trend-line{height:7px;border-radius:999px;background:#e8eeeb;margin:8px 0 9px;overflow:hidden}
+.trend-line i{display:block;height:100%;background:#7aa98f;border-radius:999px}
+.course-card.warning .trend-line i{background:#c69b37}
+@media(max-width:1000px){.energy-summary-grid{grid-template-columns:repeat(2,1fr)}.course-grid{grid-template-columns:1fr}.course-kpis{grid-template-columns:repeat(2,1fr)}}
