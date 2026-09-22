@@ -685,3 +685,41 @@
     page-break-inside:avoid!important;
   }
 }
+
+
+/* Self-service configuration */
+.page-heading-actions,.config-hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end}
+.config-hero{margin-bottom:24px}
+.config-hero h1{font-size:34px;margin:8px 0}
+.config-hero p{max-width:760px}
+.config-status{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:8px 10px;border:1px solid;border-radius:999px;white-space:nowrap}
+.config-layout{display:grid;gap:18px}
+.config-section{overflow:hidden}
+.config-section .panel-title{align-items:center}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:22px}
+.form-grid label,.sensor-editor-row label{display:grid;gap:7px;font-size:9px;letter-spacing:.5px;text-transform:uppercase}
+.form-grid .full{grid-column:1/-1}
+.form-grid input,.form-grid textarea,.sensor-editor-row input{width:100%;box-sizing:border-box}
+textarea{font:inherit;resize:vertical;background:#fff;border:1px solid #d8e1db;border-radius:5px;padding:11px 12px}
+.checkbox-line{display:flex!important;align-items:center;gap:8px;text-transform:none!important;letter-spacing:0!important}
+.checkbox-line input{width:auto!important}
+.config-note,.config-help{margin:18px 22px 0;padding:13px 14px;border:1px solid;border-radius:7px;font-size:10px;line-height:1.65}
+.config-help{margin-bottom:0}
+.config-note code{font-size:9px}
+.config-error{display:flex;gap:10px;margin:0 22px 20px;padding:12px 14px;border:1px solid;border-radius:7px;font-size:10px}
+.sensor-editor{display:grid;gap:10px;padding:20px 22px 22px}
+.sensor-editor-row{display:grid;grid-template-columns:1.15fr 1fr .6fr 1.5fr .8fr .55fr;gap:10px;padding:14px;border:1px solid;border-radius:8px;align-items:end}
+.sensor-editor-row .delete-sensor{padding-bottom:10px}
+.config-actions{position:sticky;bottom:12px;display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:13px 15px;border:1px solid;border-radius:10px;backdrop-filter:blur(14px);z-index:5}
+.config-actions #config-message{margin-right:auto;font-size:10px}
+.connection-pill{display:inline-flex;align-items:center;font-size:8px;letter-spacing:.7px;text-transform:uppercase;padding:5px 8px;border:1px solid;border-radius:999px;white-space:nowrap}
+td small{display:block;margin-top:4px}
+@media(max-width:1100px){.sensor-editor-row{grid-template-columns:1fr 1fr 1fr}.sensor-editor-row .delete-sensor{padding-bottom:0}}
+@media(max-width:760px){
+ .page-heading-actions,.config-hero{display:block}
+ .page-heading-actions>a,.config-status{display:inline-flex;margin-top:14px}
+ .form-grid{grid-template-columns:1fr}
+ .form-grid .full{grid-column:auto}
+ .sensor-editor-row{grid-template-columns:1fr}
+ .config-actions{flex-wrap:wrap}
+}
