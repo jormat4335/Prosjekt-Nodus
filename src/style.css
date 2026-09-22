@@ -236,6 +236,16 @@
 
 /* Strong print parity with on-screen report */
 
+
+/* Professional report document chrome */
+.report-document-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:0 24px 20px;border:1px solid;border-radius:8px;overflow:hidden}
+.report-document-meta>div{padding:13px 15px}
+.report-document-meta span{display:block;font-size:8px;letter-spacing:.9px;text-transform:uppercase;margin-bottom:6px}
+.report-document-meta strong{display:block;font-size:10px;font-weight:600;line-height:1.45}
+.report-document-footer{display:flex;justify-content:space-between;gap:22px;align-items:center;margin:28px 24px 20px;padding-top:15px;border-top:1px solid;font-size:9px}
+.report-document-footer span{text-align:right}
+@media(max-width:800px){.report-document-meta{grid-template-columns:1fr 1fr}.report-document-footer{display:block}.report-document-footer span{display:block;text-align:left;margin-top:7px}}
+
 /* Canonical PDF / print stylesheet — keep this as the only print block */
 @page{
   size:A4;
@@ -535,6 +545,53 @@
   }
   .printable-report .muted{
     color:#8e9eac!important;
+    background:transparent!important;
+  }
+
+
+  /* Document metadata and footer */
+  .printable-report .report-document-meta{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:1px!important;
+    margin:0 20px 18px!important;
+    background:#303a45!important;
+    border:1px solid #303a45!important;
+    border-radius:7px!important;
+    overflow:hidden!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  .printable-report .report-document-meta>div{
+    background:#1b2229!important;
+    padding:12px 13px!important;
+  }
+  .printable-report .report-document-meta span{
+    color:#7f93a5!important;
+    background:transparent!important;
+  }
+  .printable-report .report-document-meta strong{
+    color:#edf3f8!important;
+    background:transparent!important;
+  }
+  .printable-report .report-document-footer{
+    display:flex!important;
+    justify-content:space-between!important;
+    gap:20px!important;
+    margin:26px 24px 16px!important;
+    padding-top:13px!important;
+    border-top:1px solid #303a45!important;
+    background:transparent!important;
+    color:#8494a2!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  .printable-report .report-document-footer strong{
+    color:#dbe5ed!important;
+    background:transparent!important;
+  }
+  .printable-report .report-document-footer span{
+    color:#8494a2!important;
     background:transparent!important;
   }
 
