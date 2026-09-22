@@ -736,3 +736,9 @@ td small{display:block;margin-top:4px}
   border-color:#815049;
 }
 .danger-button:disabled{opacity:.55;cursor:not-allowed}
+
+
+/* Site card admin edit affordance */
+.site-card-link{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.site-card-edit{font-size:9px;letter-spacing:.5px;text-transform:uppercase;text-decoration:underline;cursor:pointer;opacity:.9}
+.site-card-edit:hover{opacity:1}
