@@ -218,10 +218,3 @@ footer{border-color:#2a333e;color:#758595}
 .connection-pill.configured,.connection-pill.testing{background:#27261d;border-color:#5b5436;color:#d4be7e}
 .connection-pill.error,.connection-pill.disconnected{background:#34201e;border-color:#70443e;color:#e0a099}
 .connection-pill.not_configured{background:#202833;border-color:#35424f;color:#90a0ae}
-
-
-/* First-time admin */
-.first-admin{background:#171f26;border-color:#30404e}
-.first-admin h3{color:#edf3f8}
-.first-admin p{color:#91a0ad}
-.first-admin #signup-message{color:#b9c8d5}
