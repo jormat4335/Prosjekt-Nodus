@@ -211,7 +211,7 @@ function reportAssessment(report){
  const onsite=recs.filter(r=>r.onsite).length;
  const confidence=report?.energy_summary?.confidence||report?.confidence||'ikke angitt';
  const level=critical?'critical':warnings?'warning':'normal';
- const verdict=critical?'${critical} kritiske funn krever rask verifikasjon':warnings?'${warnings} funn bør undersøkes nærmere':'Ingen prioriterte avvik i tilgjengelig analyse';
+ const verdict=critical?`${critical} kritiske funn krever rask verifikasjon`:warnings?`${warnings} funn bør undersøkes nærmere`:'Ingen prioriterte avvik i tilgjengelig analyse';
  const conclusion=critical
    ?'Analysen inneholder ett eller flere kritiske funn. Disse bør verifiseres faglig før videre drift eller tiltak vurderes.'
    :warnings
