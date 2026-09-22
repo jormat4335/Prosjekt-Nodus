@@ -332,7 +332,41 @@
           "illustrative": true
         }
       ],
-      "content": "TESTRAPPORT — SIMULERTE DATA\\n\\nHOVEDKONKLUSJON\\nKurs 1 fremstår stabil og nær forventet energiytelse. Kurs 2 skiller seg ut med høyere varmeeffekt, høyere vannmengde og en fallende ΔT-trend. Kombinasjonen er mer interessant enn hvert enkelt signal alene.\\n\\nENERGIBILDE\\nBeregnet varmebruk i analyseperioden: 895 kWh. Baseline for tilsvarende drift: 780 kWh. Simulert avvik: +115 kWh / +14,7 %. Dette er et analyseavvik, ikke dokumentert besparelsespotensial.\\n\\nKURS 1\\nBelimo Energy Valve 1 viser 44,0 kW, 4,35 m³/h og ΔT 8,7 K. Forventet effekt er 42,5 kW. Avviket er lite, og utviklingen er stabil.\\n\\nKURS 2\\nBelimo Energy Valve 2 viser 42,7 kW, 6,8 m³/h og ΔT 5,4 K. Forventet effekt er 34,5 kW. Samtidig har ΔT falt fra 8,1 K til 5,4 K de siste sju dagene. Dette gir et mønster som bør undersøkes nærmere.\\n\\nMULIGE FORKLARINGER\\n• For høy flow i forhold til faktisk varmebehov.\\n• Endret ventilregulering eller svak ventilautoritet.\\n• Bypass eller hydraulisk kortslutning.\\n• Redusert varmeavgivelse i batteri/veksler.\\n• Lengre driftstid eller høyere settpunkt enn baseline.\\n\\nANBEFALT KONTROLL\\nSammenlign kurs 2 mot utetemperatur, romtemperatur, tidsprogram og pumpens elektriske effekt. Kontroller deretter ventilfunksjon, innregulering og eventuell bypass. AI-funnet skal brukes som prioritering av kontroll, ikke som automatisk diagnose.\\n\\nAVGRENSNING\\nAlle tall i denne rapporten er testdata. Plattformen har kun overvåking og sender ingen kommandoer til anlegget."
+      "content": "TESTRAPPORT — SIMULERTE DATA\\n\\nHOVEDKONKLUSJON\\nKurs 1 fremstår stabil og nær forventet energiytelse. Kurs 2 skiller seg ut med høyere varmeeffekt, høyere vannmengde og en fallende ΔT-trend. Kombinasjonen er mer interessant enn hvert enkelt signal alene.\\n\\nENERGIBILDE\\nBeregnet varmebruk i analyseperioden: 895 kWh. Baseline for tilsvarende drift: 780 kWh. Simulert avvik: +115 kWh / +14,7 %. Dette er et analyseavvik, ikke dokumentert besparelsespotensial.\\n\\nKURS 1\\nBelimo Energy Valve 1 viser 44,0 kW, 4,35 m³/h og ΔT 8,7 K. Forventet effekt er 42,5 kW. Avviket er lite, og utviklingen er stabil.\\n\\nKURS 2\\nBelimo Energy Valve 2 viser 42,7 kW, 6,8 m³/h og ΔT 5,4 K. Forventet effekt er 34,5 kW. Samtidig har ΔT falt fra 8,1 K til 5,4 K de siste sju dagene. Dette gir et mønster som bør undersøkes nærmere.\\n\\nMULIGE FORKLARINGER\\n• For høy flow i forhold til faktisk varmebehov.\\n• Endret ventilregulering eller svak ventilautoritet.\\n• Bypass eller hydraulisk kortslutning.\\n• Redusert varmeavgivelse i batteri/veksler.\\n• Lengre driftstid eller høyere settpunkt enn baseline.\\n\\nANBEFALT KONTROLL\\nSammenlign kurs 2 mot utetemperatur, romtemperatur, tidsprogram og pumpens elektriske effekt. Kontroller deretter ventilfunksjon, innregulering og eventuell bypass. AI-funnet skal brukes som prioritering av kontroll, ikke som automatisk diagnose.\\n\\nAVGRENSNING\\nAlle tall i denne rapporten er testdata. Plattformen har kun overvåking og sender ingen kommandoer til anlegget.",
+      "recommendations": [
+        {
+          "priority": "high",
+          "category": "Tekniker på stedet",
+          "title": "Verifiser Kurs 2 fysisk før reguleringsendringer",
+          "reason": "Kurs 2 viser samtidig høyere varmeeffekt enn baseline, høyere flow og fallende ΔT. Kombinasjonen kan skyldes hydraulikk, ventilfunksjon, bypass eller endret varmebehov.",
+          "action": "Kontroller faktisk tur/returtemperatur, flow, ventilslag, bypass og varmeavgivelse på stedet. Sammenlign feltmålinger med verdiene fra Belimo Energy Valve.",
+          "onsite": true
+        },
+        {
+          "priority": "medium",
+          "category": "Innregulering",
+          "title": "Kontroller vannmengde og hydraulisk innregulering",
+          "reason": "Flowen på Kurs 2 er vesentlig høyere samtidig som ΔT er lavere enn referansekursen. Dersom varmebehovet ikke forklarer dette, kan kursen være over-sirkulert.",
+          "action": "Kontroller dimensjonerende vannmengde, differansetrykk, ventilautoritet og eventuelle bypass-løp. Vurder ny innregulering dersom målt vannmengde ikke samsvarer med prosjektert behov.",
+          "onsite": true
+        },
+        {
+          "priority": "medium",
+          "category": "Reguleringskurver",
+          "title": "Gå gjennom temperatur- og effektkurver",
+          "reason": "Sammenhengen mellom turtemperatur, ΔT og levert effekt avviker fra forventet baseline. En endret varmekurve, settpunkt eller driftstid kan gi samme symptom uten fysisk feil.",
+          "action": "Legg temperatur, utetemperatur, effekt, ventilposisjon og driftstid over samme tidsakse. Kontroller varmekurve og settpunkter mot faktisk belastning før mekaniske tiltak.",
+          "onsite": false
+        },
+        {
+          "priority": "low",
+          "category": "Trendoppfølging",
+          "title": "Følg ΔT og effekt etter utført kontroll",
+          "reason": "En enkelt korreksjon bør bekreftes over tid for å se om forholdet mellom flow, ΔT og effekt normaliseres.",
+          "action": "Sammenlign minst 3–7 døgn før og etter tiltak under tilsvarende utetemperatur og driftstid. Dokumenter om baseline nærmer seg forventet nivå.",
+          "onsite": false
+        }
+      ]
     }
   ]
 }
