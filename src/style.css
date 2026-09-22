@@ -723,3 +723,13 @@ td small{display:block;margin-top:4px}
  .sensor-editor-row{grid-template-columns:1fr}
  .config-actions{flex-wrap:wrap}
 }
+
+
+/* First-time admin signup */
+.first-admin{margin-top:24px;padding:18px;border:1px solid;border-radius:10px}
+.first-admin h3{font-size:15px;margin:7px 0 6px}
+.first-admin p{font-size:10px;margin:0 0 14px}
+.first-admin form{display:grid;gap:12px}
+.first-admin label{display:grid;gap:7px;font-size:9px;letter-spacing:.5px;text-transform:uppercase}
+.first-admin input{width:100%;box-sizing:border-box}
+.first-admin #signup-message{min-height:16px;font-size:10px}
