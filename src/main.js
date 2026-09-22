@@ -82,7 +82,7 @@ function siteEditor(siteId=''){
     ${sensorsForSite.map(s=>sensorEditorRow(s)).join('')}
    </div>
   </section>
-  <div class="config-actions"><span id="config-message"></span><button type="button" id="cancel-config" class="secondary">Avbryt</button><button type="submit">${site?'Lagre endringer':'Opprett anlegg'}</button></div>
+  <div class="config-actions"><span id="config-message"></span>${site&&!site.is_test?`<button type="button" id="delete-site" class="danger-button" data-site-id="${e(site.id)}" data-site-name="${e(site.name)}">Slett anlegg</button>`:'' }<button type="button" id="cancel-config" class="secondary">Avbryt</button><button type="submit">${site?'Lagre endringer':'Opprett anlegg'}</button></div>
  </form>`;
 }
 function sensorEditorRow(sensor={}){
@@ -131,8 +131,28 @@ async function saveSiteConfiguration(form,siteId=''){
    if(id){const {error}=await db.from('sensors').update(payload).eq('id',id);if(error)throw error;}
    else{const {error}=await db.from('sensors').insert(payload);if(error)throw error;}
  }
+ const {data:verified,error:verifyError}=await db.from('sites').select('id,name').eq('id',savedSite.id).single();
+ if(verifyError||!verified)throw new Error('Anlegget ble ikke bekreftet lagret i databasen.');
  await load();
  location.hash='site/'+savedSite.id;
+ return savedSite;
+}
+
+async function deleteSiteConfiguration(siteId,siteName){
+ if(!siteId||!siteName)throw new Error('Mangler anleggsinformasjon.');
+ const first=window.confirm(\`Du er i ferd med å slette "\${siteName}". Dette sletter anlegg, sensorer, målehistorikk, alarmer, rapporter og datakilder. Vil du fortsette?\`);
+ if(!first)return false;
+ const typed=window.prompt(\`Siste bekreftelse: skriv anleggsnavnet nøyaktig for å slette:\\n\\n\${siteName}\`);
+ if(typed===null)return false;
+ if(typed.trim()!==siteName){
+   window.alert('Navnet stemte ikke. Anlegget ble ikke slettet.');
+   return false;
+ }
+ const {error}=await db.rpc('delete_site_cascade',{p_site_id:siteId,p_confirmation_name:typed.trim()});
+ if(error)throw error;
+ await load();
+ location.hash='sites';
+ return true;
 }
 function configButton(siteId=''){return session&&isAdmin()?nav(siteId?'site-config/'+siteId:'site-new',siteId?'Konfigurer anlegg':'＋ Legg til anlegg','button secondary'):'';}
 function overview(){const findings=allFindings(),attention=findings.filter(f=>f.severity==='warning'||f.severity==='critical'),stale=data.sensors.filter(s=>readingState(data.latest_readings.find(r=>r.sensor_id===s.id),s)!=='fresh').length;return `<div class="hero-heading"><div><div class="eyebrow">ENVATEC SMARTDRIFT · INTERN ANALYSE</div><h1>Finn mønstrene før de blir alarmer.</h1><p>Et analyseverktøy for gradvise avvik, ineffektiv drift og kombinasjoner av signaler som normalt ikke fanges av faste alarmgrenser.</p></div><div class="hero-chip"><span></span>Analysearbeidsflate</div></div>
@@ -277,6 +297,7 @@ root.innerHTML=`<div class="app-layout"><aside class="sidebar"><a class="brand l
 document.querySelector('#sensor')?.addEventListener('change',ev=>{selectedSensor=ev.target.value;loadHistory();});document.querySelector('#period')?.addEventListener('change',ev=>{period=ev.target.value;loadHistory();});document.querySelectorAll('.report-open').forEach(b=>b.onclick=()=>{selectedReport=b.dataset.id;reportTab='overview';if(current().page!=='reports'){location.hash=(isPreview()?'demo/':'')+'reports';}else render();});document.querySelectorAll('[data-report-tab]').forEach(b=>b.onclick=()=>{reportTab=b.dataset.reportTab;selectedReport='';render();});document.querySelector('#close-report')?.addEventListener('click',()=>{selectedReport='';render();});document.querySelector('#print-report')?.addEventListener('click',()=>window.print());
 document.querySelector('#add-sensor-row')?.addEventListener('click',()=>{document.querySelector('#sensor-editor')?.insertAdjacentHTML('beforeend',sensorEditorRow());});
 document.querySelector('#cancel-config')?.addEventListener('click',()=>history.back());
+document.querySelector('#delete-site')?.addEventListener('click',async ev=>{const button=ev.currentTarget,msg=document.querySelector('#config-message');button.disabled=true;msg.textContent='';try{const deleted=await deleteSiteConfiguration(button.dataset.siteId,button.dataset.siteName);if(!deleted)button.disabled=false;}catch(err){msg.textContent='Kunne ikke slette: '+(err?.message||'ukjent feil');button.disabled=false;}});
 document.querySelector('#site-config-form')?.addEventListener('submit',async ev=>{ev.preventDefault();const button=ev.target.querySelector('button[type="submit"]'),msg=document.querySelector('#config-message');button.disabled=true;msg.textContent='Lagrer …';try{await saveSiteConfiguration(ev.target,current().page==='site-config'?current().id:'');msg.textContent='Lagret';}catch(err){msg.textContent='Kunne ikke lagre: '+(err?.message||'ukjent feil');button.disabled=false;}});
 }
 async function allRows(table){let rows=[];for(let offset=0;;offset+=1000){let q=db.from(table).select('*');if(['events','alarms','reports','analysis_runs'].includes(table)){const col=table==='events'?'occurred_at':table==='alarms'?'occurred_at':'created_at';q=q.order(col,{ascending:false});}else if(table==='latest_readings')q=q.order('sensor_id');else if(table==='organization_members')q=q.order('organization_id').order('user_id');else q=q.order('id');const {data:batch,error}=await q.range(offset,offset+999);if(error)throw error;rows.push(...batch);if(batch.length<1000)return rows;if(rows.length>=50000)throw new Error('For mange poster. Kontakt administrator for å avgrense visningen.');}}
