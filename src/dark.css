@@ -203,3 +203,18 @@ footer{border-color:#2a333e;color:#758595}
 .recommendation-priority.high{background:#34201e;color:#e0a099}
 .recommendation-priority.low{background:#1b2a23;color:#7fc198}
 .onsite-flag{color:#8eb8dc}
+
+
+/* Configuration workspace */
+.config-status{background:#1b222a;border-color:#34404c;color:#a9bac9}
+.form-grid input,.form-grid textarea,.sensor-editor-row input,textarea{background:#151a20;border-color:#303a45;color:#edf2f7}
+.form-grid input::placeholder,.form-grid textarea::placeholder,.sensor-editor-row input::placeholder{color:#677684}
+.config-note,.config-help{background:#171f26;border-color:#2c3945;color:#9fadb9}
+.config-error{background:#2b1f1e;border-color:#563a36;color:#d7a29a}
+.sensor-editor-row{background:#181f26;border-color:#2d3742}
+.config-actions{background:rgba(20,26,32,.92);border-color:#34404b}
+.connection-pill{background:#202833;border-color:#35424f;color:#aebdca}
+.connection-pill.connected{background:#1b2a23;border-color:#355045;color:#7fc198}
+.connection-pill.configured,.connection-pill.testing{background:#27261d;border-color:#5b5436;color:#d4be7e}
+.connection-pill.error,.connection-pill.disconnected{background:#34201e;border-color:#70443e;color:#e0a099}
+.connection-pill.not_configured{background:#202833;border-color:#35424f;color:#90a0ae}
