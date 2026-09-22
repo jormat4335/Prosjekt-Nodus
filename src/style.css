@@ -723,3 +723,16 @@ td small{display:block;margin-top:4px}
  .sensor-editor-row{grid-template-columns:1fr}
  .config-actions{flex-wrap:wrap}
 }
+
+
+/* Destructive configuration actions */
+.danger-button{
+  background:#2b1f1e;
+  border:1px solid #6a3e39;
+  color:#e5a19a;
+}
+.danger-button:hover{
+  background:#352321;
+  border-color:#815049;
+}
+.danger-button:disabled{opacity:.55;cursor:not-allowed}
