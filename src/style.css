@@ -226,3 +226,91 @@
  .printable-report .energy-report{padding:0 16px!important}
  .printable-report .report-content{white-space:pre-wrap!important}
 }
+
+
+/* Recommendation workflow */
+.recommendation-list,.recommendation-hub{display:grid;gap:12px;margin:0 24px 24px}
+.recommendation-hub{margin:0}
+.recommendation-card{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;border:1px solid;border-radius:10px;padding:18px;break-inside:avoid;page-break-inside:avoid}
+.recommendation-index{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:700}
+.recommendation-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.recommendation-card h3{font-size:14px;margin:12px 0 8px}
+.recommendation-reason{font-size:10px;line-height:1.7;margin:0}
+.recommendation-action{margin-top:14px;padding:13px 14px;border-radius:7px;border:1px solid}
+.recommendation-action>span{display:block;font-size:8px;letter-spacing:1px;font-weight:700}
+.recommendation-action p{font-size:10px;line-height:1.65;margin:6px 0 0}
+.recommendation-priority{font-size:8px;text-transform:uppercase;letter-spacing:.7px;padding:5px 8px;border-radius:999px}
+.onsite-flag{margin-top:12px;font-size:9px;font-weight:600}
+.report-section-heading>p{font-size:10px;max-width:760px}
+
+@media print{
+ html,body{background:#12161b!important}
+ body{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+ body *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+ .printable-report{
+   position:absolute!important;left:0!important;top:0!important;width:100%!important;
+   margin:0!important;padding:0!important;
+   background:#171d23!important;color:#eef2f6!important;
+   border:1px solid #2a333e!important;border-radius:0!important;
+   box-shadow:none!important;
+ }
+ .printable-report,.printable-report article,.printable-report div{
+   color:#eef2f6!important;
+ }
+ .printable-report .report-toolbar{
+   background:linear-gradient(180deg,#1c232b 0%,#171d23 100%)!important;
+   border-color:#303a45!important;
+ }
+ .printable-report .report-executive{
+   background:#17212a!important;border-left-color:#6f9ac4!important;
+ }
+ .printable-report .energy-summary-grid article,
+ .printable-report .course-card,
+ .printable-report .course-kpis div{
+   background:#1d242c!important;border-color:#303b46!important;
+ }
+ .printable-report .course-card.normal{
+   background:#1b2521!important;border-color:#355045!important;
+ }
+ .printable-report .course-card.warning,
+ .printable-report .energy-summary-grid .energy-warn{
+   background:#29261c!important;border-color:#625a35!important;
+ }
+ .printable-report .finding-card,
+ .printable-report .finding-action,
+ .printable-report .component-info{
+   background:#1b2229!important;border-color:#303b46!important;
+ }
+ .printable-report .recommendation-card{
+   background:#1b2229!important;border-color:#303b46!important;
+ }
+ .printable-report .recommendation-index{
+   background:#222e39!important;color:#9fc0df!important;
+ }
+ .printable-report .recommendation-action{
+   background:#151c22!important;border-color:#2d3944!important;
+ }
+ .printable-report .tag{background:#202a33!important;color:#aab9c7!important}
+ .printable-report .severity.warning,
+ .printable-report .recommendation-priority.medium{
+   background:#3a301e!important;color:#e2bd74!important;border-color:#6b5730!important;
+ }
+ .printable-report .severity.critical,
+ .printable-report .recommendation-priority.high{
+   background:#3a211f!important;color:#e5a096!important;border-color:#70443e!important;
+ }
+ .printable-report .severity.normal,
+ .printable-report .recommendation-priority.low{
+   background:#1b2a23!important;color:#7fc198!important;border-color:#355045!important;
+ }
+ .printable-report .onsite-flag{color:#9fc0df!important}
+ .printable-report p,.printable-report small,.printable-report span{color:#c2cdd7!important}
+ .printable-report h2,.printable-report h3,.printable-report strong{color:#f2f6f9!important}
+ .printable-report .eyebrow{color:#7ea5c9!important}
+ .printable-report .report-content{color:#dbe3ea!important;white-space:pre-wrap!important}
+ .printable-report .trend-line{background:#2a3540!important}
+ .printable-report .trend-line i{background:#6f9ac4!important}
+ .printable-report .report-actions,.printable-report .pdf-note{display:none!important}
+ .printable-report .energy-report{padding-left:16px!important;padding-right:16px!important}
+ .printable-report .recommendation-card,.printable-report .course-card,.printable-report .finding-card{break-inside:avoid;page-break-inside:avoid}
+}
