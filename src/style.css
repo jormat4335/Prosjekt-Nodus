@@ -314,3 +314,192 @@
  .printable-report .energy-report{padding-left:16px!important;padding-right:16px!important}
  .printable-report .recommendation-card,.printable-report .course-card,.printable-report .finding-card{break-inside:avoid;page-break-inside:avoid}
 }
+
+
+/* Strong print parity with on-screen report */
+@media print{
+  html,body{
+    background:#12161b!important;
+    color:#eef2f6!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+    color-adjust:exact!important;
+  }
+
+  .printable-report,
+  .printable-report section,
+  .printable-report article,
+  .printable-report div,
+  .printable-report header,
+  .printable-report footer{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+
+  .printable-report{
+    background:#171d23!important;
+    color:#eef2f6!important;
+  }
+
+  .printable-report .report-toolbar,
+  .printable-report .report-section-heading,
+  .printable-report .report-executive,
+  .printable-report .energy-report,
+  .printable-report .finding-card,
+  .printable-report .finding-action,
+  .printable-report .component-info,
+  .printable-report .recommendation-card,
+  .printable-report .recommendation-action,
+  .printable-report .course-card,
+  .printable-report .course-kpis div,
+  .printable-report .energy-summary-grid article,
+  .printable-report .report-content,
+  .printable-report .severity-legend,
+  .printable-report .delta-trend,
+  .printable-report .trend-line,
+  .printable-report .tag,
+  .printable-report .severity{
+    box-shadow:none!important;
+    background-clip:padding-box!important;
+  }
+
+  .printable-report .report-toolbar{
+    background:#1b2229!important;
+    border-color:#303a45!important;
+  }
+
+  .printable-report .report-section-heading{
+    background:transparent!important;
+  }
+
+  .printable-report .report-executive{
+    background:#17212a!important;
+    border-left:3px solid #6f9ac4!important;
+  }
+
+  .printable-report .report-content{
+    background:#171d23!important;
+    color:#dbe3ea!important;
+  }
+
+  .printable-report .energy-summary-grid article,
+  .printable-report .course-kpis div{
+    background:#1d242c!important;
+    border:1px solid #303b46!important;
+  }
+
+  .printable-report .course-card{
+    background:#1d242c!important;
+    border:1px solid #303b46!important;
+  }
+
+  .printable-report .course-card.normal{
+    background:#1b2521!important;
+    border-color:#355045!important;
+  }
+
+  .printable-report .course-card.warning,
+  .printable-report .energy-summary-grid .energy-warn{
+    background:#29261c!important;
+    border-color:#625a35!important;
+  }
+
+  .printable-report .finding-card,
+  .printable-report .component-info{
+    background:#1b2229!important;
+    border:1px solid #303b46!important;
+  }
+
+  .printable-report .finding-action{
+    background:#151c22!important;
+    border:1px solid #2d3944!important;
+  }
+
+  .printable-report .recommendation-card{
+    background:#1b2229!important;
+    border:1px solid #303b46!important;
+  }
+
+  .printable-report .recommendation-action{
+    background:#151c22!important;
+    border:1px solid #2d3944!important;
+  }
+
+  .printable-report .tag{
+    background:#202a33!important;
+    color:#aab9c7!important;
+    border-color:#35404d!important;
+  }
+
+  .printable-report .severity.warning,
+  .printable-report .recommendation-priority.medium{
+    background:#31291c!important;
+    color:#e2bd74!important;
+    border:1px solid #6b5730!important;
+  }
+
+  .printable-report .severity.critical,
+  .printable-report .recommendation-priority.high{
+    background:#34201e!important;
+    color:#e0a099!important;
+    border:1px solid #70443e!important;
+  }
+
+  .printable-report .severity.normal,
+  .printable-report .recommendation-priority.low{
+    background:#1b2a23!important;
+    color:#7fc198!important;
+    border:1px solid #355045!important;
+  }
+
+  .printable-report h1,
+  .printable-report h2,
+  .printable-report h3,
+  .printable-report h4,
+  .printable-report strong{
+    color:#f2f6f9!important;
+    background:transparent!important;
+  }
+
+  .printable-report p,
+  .printable-report li,
+  .printable-report td,
+  .printable-report th,
+  .printable-report small,
+  .printable-report .muted,
+  .printable-report .recommendation-reason,
+  .printable-report .recommendation-action p,
+  .printable-report .finding-action p,
+  .printable-report .component-info p,
+  .printable-report .delta-trend small{
+    color:#c7d1da!important;
+  }
+
+  .printable-report .eyebrow,
+  .printable-report .recommendation-action>span{
+    color:#7fa6ca!important;
+  }
+
+  .printable-report .onsite-flag{
+    color:#8eb8dc!important;
+  }
+
+  .printable-report .trend-line{
+    background:#2a3540!important;
+  }
+
+  .printable-report .trend-line i{
+    background:#6f9ac4!important;
+  }
+
+  .printable-report *::before,
+  .printable-report *::after{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+
+  .printable-report .report-actions,
+  .printable-report .pdf-note{
+    display:none!important;
+  }
+}
