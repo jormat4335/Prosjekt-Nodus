@@ -124,3 +124,65 @@ footer{border-color:#2a333e;color:#758595}
 }
 .sidebar .brand-logo-image{width:190px}
 .login-story .brand-logo-image{width:340px;max-width:min(340px,82vw)}
+
+
+/* Smartdrift advanced analysis surfaces */
+.hero-heading p,.detail-hero p{color:#93a0ad}
+.hero-chip{background:#181f27;border-color:#303b47;color:#b7c8d8}
+.hero-chip span{background:#6f9ac4;box-shadow:0 0 0 4px rgba(111,154,196,.12)}
+.analysis-stats article{background:linear-gradient(180deg,#1b2229 0%,#181e24 100%);border-color:#2c3540}
+.analysis-stats span{color:#8795a3}
+.analysis-stats strong{color:#f1f5f8}
+.analysis-stats small{color:#738392}
+.insight-row{border-color:#29323b;color:#dce4eb}
+.insight-row:hover{background:#1e262e}
+.insight-copy small{color:#778898}
+.signal-dot.warning{background:#d1a24b;box-shadow:0 0 0 4px rgba(209,162,75,.1)}
+.signal-dot.critical{background:#d16958;box-shadow:0 0 0 4px rgba(209,105,88,.1)}
+.signal-dot.normal{background:#58aa7a;box-shadow:0 0 0 4px rgba(88,170,122,.1)}
+.signal-dot.info,.signal-dot.unknown{background:#6f9ac4}
+.method-grid{background:#29323b}
+.method-grid article{background:#1a2027}
+.method-grid article>span,.method-detail-grid article>span{color:#688bad}
+.method-grid p,.method-detail-grid p{color:#82909d}
+.site-card{background:linear-gradient(180deg,#1b2229,#181e24);border-color:#2b3540}
+.site-card:hover{border-color:#46617b;background:#1c242c}
+.site-card p{color:#7f8d9b}
+.site-score{background:#202833;color:#9eafbf}
+.site-score.warning{background:#31291c;color:#e2bd74}
+.site-score.normal{background:#1b2a23;color:#7fc198}
+.site-card-kpis span{color:#788795}
+.site-card-kpis strong{color:#e5ebf0}
+.site-card-link{border-color:#2b3540;color:#8db5da}
+.detail-actions .button{background:#4d7498}
+.signal-ring{color:#648caf;background:#151b21}
+.signal-ring:after{background:#1a2027}
+.signal-ring span{color:#80909f}
+.tabs{border-color:#2a333e}
+.tab-button{color:#8796a5}
+.tab-button:hover{color:#d7e2eb}
+.tab-button.active{color:#9bc3e9;border-bottom-color:#729ec7}
+.report-card,.finding-hub-card,.method-detail-grid article{background:linear-gradient(180deg,#1b2229,#181e24);border-color:#2b3540}
+.report-card p,.finding-hub-card>p{color:#8795a2}
+.report-card-meta span{color:#7b8997}
+.report-card-meta strong{color:#e3e9ef}
+.finding-hub-card.warning:before{background:#c89a45}
+.finding-hub-card.critical:before{background:#ca6555}
+.finding-hub-card.normal:before{background:#55a876}
+.finding-hub-card.info:before,.finding-hub-card.unknown:before{background:#678fb5}
+.finding-next{background:#151c22;border:1px solid #27323c}
+.finding-next>span{color:#7790a7}
+.finding-next p{color:#a9b5c0}
+.report-toolbar{border-color:#2b3540}
+.report-toolbar p{color:#7d8c99}
+.report-executive{background:#171f26;border-color:#6a94ba}
+.report-executive>span{color:#86a9c7}
+.report-executive p{color:#c4d0da}
+.analysis-engine .engine-core,.engine-lanes article{background:linear-gradient(180deg,#1a222a,#171d23);border-color:#2b3540}
+.engine-core:before{content:'';position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(77,116,152,.14),transparent 68%)}
+.engine-pulse{background:#243442;box-shadow:inset 0 0 0 1px #44617c,0 0 30px rgba(91,132,171,.12)}
+.engine-pulse:before,.engine-pulse:after{border-color:#6087aa}
+.engine-core small{color:#728ba2}
+.engine-core strong{color:#edf3f8}
+.engine-lanes article>span{background:#222e39;color:#8fb3d4}
+.engine-lanes p{color:#81909e}
