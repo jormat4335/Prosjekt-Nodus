@@ -874,3 +874,31 @@ td small{display:block;margin-top:4px}
  .sensor-main-fields,.sensor-analysis-fields{grid-template-columns:1fr}
  .site-card-kpis{grid-template-columns:1fr 1fr}
 }
+
+
+/* Portfolio search */
+.portfolio-tools{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+  margin:-4px 0 16px;
+}
+.portfolio-tools label{
+  display:grid;
+  gap:7px;
+  width:min(520px,100%);
+}
+.portfolio-tools label span{
+  font-size:8px;
+  letter-spacing:.9px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.portfolio-tools input{width:100%;box-sizing:border-box}
+.portfolio-tools small{font-size:9px;white-space:nowrap}
+.site-card[hidden]{display:none!important}
+@media(max-width:700px){
+ .portfolio-tools{display:block}
+ .portfolio-tools small{display:block;margin-top:8px}
+}
