@@ -140,9 +140,9 @@ async function saveSiteConfiguration(form,siteId=''){
 
 async function deleteSiteConfiguration(siteId,siteName){
  if(!siteId||!siteName)throw new Error('Mangler anleggsinformasjon.');
- const first=window.confirm(\`Du er i ferd med å slette "\${siteName}". Dette sletter anlegg, sensorer, målehistorikk, alarmer, rapporter og datakilder. Vil du fortsette?\`);
+ const first=window.confirm(`Du er i ferd med å slette "${siteName}". Dette sletter anlegg, sensorer, målehistorikk, alarmer, rapporter og datakilder. Vil du fortsette?`);
  if(!first)return false;
- const typed=window.prompt(\`Siste bekreftelse: skriv anleggsnavnet nøyaktig for å slette:\\n\\n\${siteName}\`);
+ const typed=window.prompt(`Siste bekreftelse: skriv anleggsnavnet nøyaktig for å slette:\n\n${siteName}`);
  if(typed===null)return false;
  if(typed.trim()!==siteName){
    window.alert('Navnet stemte ikke. Anlegget ble ikke slettet.');
