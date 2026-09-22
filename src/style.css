@@ -246,6 +246,32 @@
 .report-document-footer span{text-align:right}
 @media(max-width:800px){.report-document-meta{grid-template-columns:1fr 1fr}.report-document-footer{display:block}.report-document-footer span{display:block;text-align:left;margin-top:7px}}
 
+
+/* Report engineering assessment */
+.report-assessment{margin:0 24px 20px;border:1px solid;border-radius:10px;overflow:hidden}
+.assessment-lead{padding:20px 22px}
+.assessment-lead h3{font-size:18px;line-height:1.35;margin:7px 0 9px}
+.assessment-lead p{font-size:11px;line-height:1.7;margin:0;max-width:900px}
+.assessment-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-top:1px solid}
+.assessment-kpis>div{padding:14px 16px}
+.assessment-kpis span{display:block;font-size:8px;letter-spacing:.9px;text-transform:uppercase;margin-bottom:6px}
+.assessment-kpis strong{font-size:11px}
+.hypothesis-box{margin:0 20px 20px;padding:15px 16px;border-radius:8px;border:1px solid}
+.hypothesis-box>span{display:block;font-size:8px;letter-spacing:.9px;font-weight:700}
+.hypothesis-box>div{display:grid;grid-template-columns:1fr 1fr;gap:3px 18px;margin-top:10px}
+.hypothesis-box p{font-size:10px;line-height:1.55;margin:0}
+.hypothesis-box small{display:block;font-size:9px;margin-top:10px}
+.verification-sequence{display:grid;gap:8px;margin:0 24px 18px}
+.verification-sequence>div{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;border:1px solid;border-radius:8px;padding:13px 14px}
+.verification-sequence>div>span{width:30px;height:30px;display:grid;place-items:center;border-radius:7px;font-size:9px;font-weight:700}
+.verification-sequence p{margin:0}
+.verification-sequence strong{display:block;font-size:11px;margin-bottom:5px}
+.verification-sequence small{display:block;font-size:9px;line-height:1.6}
+@media(max-width:800px){
+ .assessment-kpis{grid-template-columns:1fr 1fr}
+ .hypothesis-box>div{grid-template-columns:1fr}
+}
+
 /* Canonical PDF / print stylesheet — keep this as the only print block */
 @page{
   size:A4;
@@ -443,6 +469,57 @@
     color:#c7d1da!important;
     background:transparent!important;
   }
+
+
+  /* Engineering assessment */
+  .printable-report .report-assessment{
+    margin:0 20px 18px!important;
+    background:#171f26!important;
+    border:1px solid #31404d!important;
+    border-radius:8px!important;
+    overflow:hidden!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  .printable-report .report-assessment.warning{border-color:#5f522f!important}
+  .printable-report .report-assessment.critical{border-color:#67403a!important}
+  .printable-report .report-assessment.normal{border-color:#345044!important}
+  .printable-report .assessment-lead{background:#1b232b!important}
+  .printable-report .assessment-lead h3{color:#f2f6f9!important;background:transparent!important}
+  .printable-report .assessment-lead p{color:#c8d3dc!important;background:transparent!important}
+  .printable-report .assessment-kpis{
+    display:grid!important;
+    grid-template-columns:repeat(4,1fr)!important;
+    gap:1px!important;
+    background:#303a45!important;
+    border-color:#303a45!important;
+  }
+  .printable-report .assessment-kpis>div{background:#192129!important}
+  .printable-report .assessment-kpis span{color:#7f93a5!important;background:transparent!important}
+  .printable-report .assessment-kpis strong{color:#eef3f7!important;background:transparent!important}
+  .printable-report .hypothesis-box{
+    background:#151c22!important;
+    border:1px solid #2d3944!important;
+  }
+  .printable-report .hypothesis-box>span{color:#7fa6ca!important;background:transparent!important}
+  .printable-report .hypothesis-box p{color:#c5d0d9!important;background:transparent!important}
+  .printable-report .hypothesis-box small{color:#8f9eaa!important;background:transparent!important}
+  .printable-report .verification-sequence{
+    margin:0 20px 18px!important;
+    background:transparent!important;
+  }
+  .printable-report .verification-sequence>div{
+    background:#1b2229!important;
+    border:1px solid #303b46!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+  .printable-report .verification-sequence>div>span{
+    background:#222e39!important;
+    color:#9fc0df!important;
+  }
+  .printable-report .verification-sequence strong{color:#f2f6f9!important;background:transparent!important}
+  .printable-report .verification-sequence small{color:#c1ccd5!important;background:transparent!important}
 
   /* Technician recommendations */
   .printable-report .recommendation-list{
