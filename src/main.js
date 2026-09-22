@@ -39,27 +39,74 @@ function findingList(findings,limit=6){
  const rows=findings.slice(0,limit);
  return rows.length?`<div class="insight-list">${rows.map(f=>`<button class="insight-row report-open" data-id="${e(f.report_id)}"><span class="signal-dot ${e(f.severity||'unknown')}"></span><span class="insight-copy"><strong>${e(f.title)}</strong><small>${siteName(f.site_id)} · ${e(f.report_title)}</small></span><span class="severity ${e(f.severity||'unknown')}">${e(findingSeverityLabel(f.severity))}</span><span class="row-arrow">→</span></button>`).join('')}</div>`:blank('✧','Ingen analysefunn ennå','Når trendanalysen finner et mønster som bør vurderes, vises det her.');
 }
-function siteList(){return data.sites.length?`<div class="site-cards">${data.sites.map(s=>{const fs=allFindings(s.id),warnings=fs.filter(f=>f.severity==='warning'||f.severity==='critical').length,latest=subset('latest_readings',s.id).sort((a,b)=>b.observed_at.localeCompare(a.observed_at))[0];return `<a class="site-card" href="#${isPreview()?'demo/':''}site/${e(s.id)}"><div class="site-card-top"><div><span class="eyebrow">ANLEGG</span><h3>${e(s.name)} ${testLabel(s)}</h3><p>${e(s.address||'Adresse ikke registrert')}</p></div><span class="site-score ${warnings?'warning':'normal'}">${warnings?warnings+' funn':'Rolig'}</span></div><div class="site-card-kpis"><span><strong>${subset('sensors',s.id).length}</strong>Målepunkter</span><span><strong>${fs.length}</strong>Analysefunn</span><span><strong>${time(latest?.observed_at)}</strong>Siste data</span></div><div class="site-card-link"><span>Åpne analyse →</span>${session&&isAdmin()?`<span class="site-card-edit" data-config-site="${e(s.id)}">Rediger</span>`:''}</div></a>`;}).join('')}</div>`:blank('▥',session?'Ingen anlegg registrert':'Ingen anlegg i visningen',session?'Når et anlegg er registrert, vises analysefunn og datakvalitet her.':'Åpne testvisningen for å se hvordan analysearbeidsflaten fungerer.',session?nav('integrations','Se datakilder →','button secondary'):nav('demo/overview','Åpne testvisning →','button'));}
+function siteList(){return data.sites.length?`<div class="site-cards">${data.sites.map(s=>{const fs=allFindings(s.id),warnings=fs.filter(f=>f.severity==='warning'||f.severity==='critical').length,latest=subset('latest_readings',s.id).sort((a,b)=>b.observed_at.localeCompare(a.observed_at))[0];return `<a class="site-card" href="#${isPreview()?'demo/':''}site/${e(s.id)}"><div class="site-card-top"><div><span class="eyebrow">ANLEGG</span><h3>${e(s.name)} ${testLabel(s)}</h3><p>${e([s.customer,s.system_type,s.address].filter(Boolean).join(' · ')||'Anleggsinformasjon ikke registrert')}</p>${(s.tags||[]).length?`<div class="site-tags">${s.tags.slice(0,4).map(t=>`<span>${e(t)}</span>`).join('')}</div>`:''}</div><span class="site-score ${warnings?'warning':'normal'}">${warnings?warnings+' funn':'Rolig'}</span></div><div class="site-card-kpis"><span><strong>${subset('sensors',s.id).length}</strong>Målepunkter</span><span><strong>${fs.length}</strong>Analysefunn</span><span><strong>${siteConfigScore(s)}%</strong>Oppsett</span><span><strong>${time(latest?.observed_at)}</strong>Siste data</span></div><div class="site-card-link"><span>Åpne analyse →</span>${session&&isAdmin()?`<span class="site-card-edit" data-config-site="${e(s.id)}">Rediger</span>`:''}</div></a>`;}).join('')}</div>`:blank('▥',session?'Ingen anlegg registrert':'Ingen anlegg i visningen',session?'Når et anlegg er registrert, vises analysefunn og datakvalitet her.':'Åpne testvisningen for å se hvordan analysearbeidsflaten fungerer.',session?nav('integrations','Se datakilder →','button secondary'):nav('demo/overview','Åpne testvisning →','button'));}
 
+
+const defaultAnalysisSettings={
+ baseline_days:14,
+ min_data_coverage_percent:85,
+ trend_analysis:true,
+ correlation_analysis:true,
+ energy_analysis:true,
+ data_quality_analysis:true,
+ report_frequency:'weekly'
+};
+function analysisSettingsFor(site){return {...defaultAnalysisSettings,...(site?.analysis_settings||{})};}
+function siteConfigScore(site){
+ if(!site)return 0;
+ const integration=data.integrations.find(i=>i.site_id===site.id&&i.kind==='mqtt');
+ const sensorCount=subset('sensors',site.id).length;
+ let score=25;
+ if(site.customer||site.system_type||site.building_type)score+=15;
+ if((site.tags||[]).length)score+=5;
+ if(integration?.broker_url)score+=25;
+ if(sensorCount)score+=30;
+ return Math.min(100,score);
+}
+function configHealthLabel(score){return score>=85?'Klar for analyse':score>=60?'Godt på vei':score>=35?'Mangler oppsett':'Start oppsett';}
+function csvTags(v){return String(v||'').split(',').map(x=>x.trim()).filter(Boolean).slice(0,20);}
 function siteEditor(siteId=''){
  const site=siteId?data.sites.find(s=>s.id===siteId):null;
  const integration=site?data.integrations.find(i=>i.site_id===site.id&&i.kind==='mqtt'):null;
  const sensorsForSite=site?subset('sensors',site.id):[];
+ const settings=analysisSettingsFor(site);
+ const configScore=site?siteConfigScore(site):0;
  if(!session)return blank('▥','Logg inn for å konfigurere anlegg','Konfigurasjon krever innlogging.');
  if(!isAdmin())return blank('▥','Administratorrettigheter kreves','Din konto har lesetilgang, men kan ikke opprette eller redigere anlegg.');
- return `<div class="config-hero"><div>${nav('sites','← Til anlegg','text-link')}<div class="eyebrow">KONFIGURASJON</div><h1>${site?'Rediger anlegg':'Legg til anlegg'}</h1><p>Opprett anlegg, MQTT-datakilde og målepunkter. Smartdrift er fortsatt kun lesende mot det tekniske anlegget.</p></div><span class="config-status">${site?'Eksisterende anlegg':'Nytt anlegg'}</span></div>
+ return `<div class="config-hero config-hero-rich"><div>${nav('sites','← Til anlegg','text-link')}<div class="eyebrow">KONFIGURASJON</div><h1>${site?'Rediger anlegg':'Legg til anlegg'}</h1><p>Definer anlegget, datakildene og hvordan Smartdrift skal analysere signalene. Ingen innstillinger her sender styrekommandoer til anlegget.</p></div><div class="config-health"><span>${site?'KONFIGURASJONSGRAD':'NYTT ANLEGG'}</span><strong>${site?configScore+'%':'—'}</strong><small>${site?configHealthLabel(configScore):'Bygg opp anlegget steg for steg'}</small>${site?'<i style="--config:'+configScore+'%"></i>':''}</div></div>
  <form id="site-config-form" class="config-layout">
   <section class="panel config-section">
-   <div class="panel-title"><div><span class="eyebrow">01 · ANLEGG</span><h2>Grunninformasjon</h2></div></div>
+   <div class="panel-title"><div><span class="eyebrow">01 · ANLEGGSIDENTITET</span><h2>Grunninformasjon</h2></div><span class="section-hint">Hjelper søk, filtrering og rapporter</span></div>
    <div class="form-grid">
     <label>Navn<input name="site_name" required value="${e(site?.name||'')}" placeholder="F.eks. Hovedkontor Oslo"></label>
+    <label>Kunde<input name="site_customer" value="${e(site?.customer||'')}" placeholder="F.eks. Envatec / kunde"></label>
     <label>Adresse<input name="site_address" value="${e(site?.address||'')}" placeholder="Gateadresse"></label>
-    <label class="full">Beskrivelse<textarea name="site_description" rows="3" placeholder="Kort intern beskrivelse av anlegget">${e(site?.description||'')}</textarea></label>
+    <label>Systemtype<input name="site_system_type" list="system-types" value="${e(site?.system_type||'')}" placeholder="Varme, kjøling, energisentral ..."><datalist id="system-types"><option value="Varmesentral"><option value="Kjølesentral"><option value="Energi-/varmepumpesentral"><option value="Snøsmelteanlegg"><option value="Ventilasjon"><option value="Datasenter kjøling"><option value="Vannbehandling"><option value="Kombinert teknisk anlegg"></datalist></label>
+    <label>Byggtype<input name="site_building_type" list="building-types" value="${e(site?.building_type||'')}" placeholder="Kontor, datasenter, skole ..."><datalist id="building-types"><option value="Kontor"><option value="Datasenter"><option value="Skole"><option value="Sykehus"><option value="Bolig"><option value="Industri"><option value="Handel"><option value="Offentlig bygg"></datalist></label>
+    <label>Idriftsatt<input name="commissioning_date" type="date" value="${e(site?.commissioning_date||'')}"></label>
+    <label>Tags<input name="site_tags" value="${e((site?.tags||[]).join(', '))}" placeholder="kritisk, glycol, 24/7"></label>
     <label>Tidssone<input name="site_timezone" value="${e(site?.timezone||'Europe/Oslo')}"></label>
+    <label class="full">Beskrivelse<textarea name="site_description" rows="3" placeholder="Hva anlegget betjener, viktige driftsforhold og relevant kontekst">${e(site?.description||'')}</textarea></label>
    </div>
   </section>
+
+  <section class="panel config-section analysis-config-section">
+   <div class="panel-title"><div><span class="eyebrow">02 · ANALYSEPROFIL</span><h2>Hvordan Smartdrift skal vurdere anlegget</h2></div><span class="section-hint">Kan justeres per anlegg</span></div>
+   <div class="analysis-config-grid">
+    <article><label>Baseline<input name="baseline_days" type="number" min="3" max="365" value="${e(settings.baseline_days)}"><small>Dager med historikk som brukes som sammenligningsgrunnlag.</small></label></article>
+    <article><label>Minimum datadekning<input name="min_data_coverage_percent" type="number" min="50" max="100" value="${e(settings.min_data_coverage_percent)}"><small>% gyldige data før analysen bør trekke konklusjoner.</small></label></article>
+    <article><label>Rapportfrekvens<select name="report_frequency"><option value="daily" ${settings.report_frequency==='daily'?'selected':''}>Daglig</option><option value="weekly" ${settings.report_frequency==='weekly'?'selected':''}>Ukentlig</option><option value="monthly" ${settings.report_frequency==='monthly'?'selected':''}>Månedlig</option><option value="manual" ${settings.report_frequency==='manual'?'selected':''}>Manuell</option></select><small>Ønsket rytme for analyserapporter.</small></label></article>
+   </div>
+   <div class="analysis-toggles">
+    <label><input type="checkbox" name="trend_analysis" ${settings.trend_analysis!==false?'checked':''}><span><strong>Trendavvik</strong><small>Gradvis drift og langsomme endringer.</small></span></label>
+    <label><input type="checkbox" name="correlation_analysis" ${settings.correlation_analysis!==false?'checked':''}><span><strong>Signal-sammenheng</strong><small>Brudd mellom flow, ΔT, effekt, ventil og andre signaler.</small></span></label>
+    <label><input type="checkbox" name="energy_analysis" ${settings.energy_analysis!==false?'checked':''}><span><strong>Energi og ytelse</strong><small>Unormal effekt, driftstid og energiprofil.</small></span></label>
+    <label><input type="checkbox" name="data_quality_analysis" ${settings.data_quality_analysis!==false?'checked':''}><span><strong>Datakvalitet</strong><small>Gap, utdaterte signaler og usannsynlige måleverdier.</small></span></label>
+   </div>
+  </section>
+
   <section class="panel config-section">
-   <div class="panel-title"><div><span class="eyebrow">02 · MQTT</span><h2>Broker og abonnement</h2></div><span class="connection-pill ${e(integration?.connection_status||'not_configured')}">${e((integration?.connection_status||'ikke konfigurert').replaceAll('_',' '))}</span></div>
+   <div class="panel-title"><div><span class="eyebrow">03 · MQTT</span><h2>Broker og abonnement</h2></div><span class="connection-pill ${e(integration?.connection_status||'not_configured')}">${e((integration?.connection_status||'ikke konfigurert').replaceAll('_',' '))}</span></div>
    <div class="config-note">For rå <code>mqtt://</code>-tilkobling brukes en serverside collector. WebSocket-brokere kan bruke <code>wss://</code>. Passord lagres kryptert og vises ikke igjen.</div>
    <div class="form-grid">
     <label>Navn på datakilde<input name="mqtt_name" value="${e(integration?.name||'MQTT')}" placeholder="MQTT"></label>
@@ -75,9 +122,10 @@ function siteEditor(siteId=''){
    </div>
    ${integration?.last_error?`<div class="config-error"><strong>Siste feil</strong><span>${e(integration.last_error)}</span></div>`:''}
   </section>
+
   <section class="panel config-section">
-   <div class="panel-title"><div><span class="eyebrow">03 · MÅLEPUNKTER</span><h2>Sensorer / topics</h2></div><button type="button" id="add-sensor-row" class="secondary">+ Legg til målepunkt</button></div>
-   <p class="config-help">Koble hvert signal til et navn, metric, enhet og MQTT-topic. Topic kan være fullt topic eller relativt til prefixet over.</p>
+   <div class="panel-title"><div><span class="eyebrow">04 · MÅLEPUNKTER</span><h2>Sensorer / topics</h2></div><button type="button" id="add-sensor-row" class="secondary">+ Legg til målepunkt</button></div>
+   <p class="config-help">Definer både hvor signalet kommer fra og hvilken rolle det har i analysen. Forventet min/maks er teknisk plausibilitetsområde, ikke nødvendigvis alarmgrenser.</p>
    <div id="sensor-editor" class="sensor-editor">
     ${sensorsForSite.map(s=>sensorEditorRow(s)).join('')}
    </div>
@@ -86,20 +134,49 @@ function siteEditor(siteId=''){
  </form>`;
 }
 function sensorEditorRow(sensor={}){
- return `<div class="sensor-editor-row">
+ return `<div class="sensor-editor-row sensor-editor-card">
    <input type="hidden" name="sensor_id" value="${e(sensor.id||'')}">
-   <label>Navn<input name="sensor_name" value="${e(sensor.name||'')}" placeholder="Turtemperatur"></label>
-   <label>Metric<input name="sensor_metric" value="${e(sensor.metric||'')}" placeholder="supply_temp"></label>
-   <label>Enhet<input name="sensor_unit" value="${e(sensor.unit||'')}" placeholder="°C"></label>
-   <label>MQTT topic<input name="sensor_topic" value="${e(sensor.source_topic||'')}" placeholder="heating/supply/temp"></label>
-   <label>Utdatert etter (s)<input name="sensor_stale" type="number" min="30" max="604800" value="${e(sensor.stale_after_seconds||900)}"></label>
-   <label class="checkbox-line delete-sensor"><input name="sensor_delete" type="checkbox"> Slett</label>
+   <div class="sensor-main-fields">
+    <label>Navn<input name="sensor_name" value="${e(sensor.name||'')}" placeholder="Turtemperatur"></label>
+    <label>Metric<input name="sensor_metric" value="${e(sensor.metric||'')}" placeholder="supply_temp"></label>
+    <label>Enhet<input name="sensor_unit" value="${e(sensor.unit||'')}" placeholder="°C"></label>
+    <label>Kategori<input name="sensor_category" list="sensor-categories" value="${e(sensor.category||'')}" placeholder="Temperatur"><datalist id="sensor-categories"><option value="Temperatur"><option value="Trykk"><option value="Differansetrykk"><option value="Flow"><option value="Effekt"><option value="Energi"><option value="Ventilposisjon"><option value="Pumpedrift"><option value="Vannkvalitet"><option value="Annet"></datalist></label>
+    <label class="topic-field">MQTT topic<input name="sensor_topic" value="${e(sensor.source_topic||'')}" placeholder="heating/supply/temp"></label>
+   </div>
+   <div class="sensor-analysis-fields">
+    <label>Forventet min<input name="sensor_expected_min" type="number" step="any" value="${sensor.expected_min==null?'':e(sensor.expected_min)}" placeholder="Valgfritt"></label>
+    <label>Forventet maks<input name="sensor_expected_max" type="number" step="any" value="${sensor.expected_max==null?'':e(sensor.expected_max)}" placeholder="Valgfritt"></label>
+    <label>Utdatert etter (s)<input name="sensor_stale" type="number" min="30" max="604800" value="${e(sensor.stale_after_seconds||900)}"></label>
+    <label class="checkbox-line analysis-enable"><input name="sensor_analysis_enabled" type="checkbox" ${sensor.analysis_enabled!==false?'checked':''}> Bruk i analyse</label>
+    <label class="checkbox-line delete-sensor"><input name="sensor_delete" type="checkbox"> Slett målepunkt</label>
+   </div>
+   <label class="sensor-description">Beskrivelse<input name="sensor_description" value="${e(sensor.description||'')}" placeholder="Hva signalet representerer og eventuelle viktige forutsetninger"></label>
  </div>`;
 }
 async function saveSiteConfiguration(form,siteId=''){
  const fd=new FormData(form), oid=orgId();
  if(!oid)throw new Error('Fant ikke organisasjonen for kontoen.');
- const sitePayload={organization_id:oid,name:String(fd.get('site_name')||'').trim(),address:String(fd.get('site_address')||'').trim()||null,description:String(fd.get('site_description')||'').trim()||null,timezone:String(fd.get('site_timezone')||'Europe/Oslo').trim()||'Europe/Oslo'};
+ const sitePayload={
+  organization_id:oid,
+  name:String(fd.get('site_name')||'').trim(),
+  customer:String(fd.get('site_customer')||'').trim()||null,
+  address:String(fd.get('site_address')||'').trim()||null,
+  description:String(fd.get('site_description')||'').trim()||null,
+  timezone:String(fd.get('site_timezone')||'Europe/Oslo').trim()||'Europe/Oslo',
+  system_type:String(fd.get('site_system_type')||'').trim()||null,
+  building_type:String(fd.get('site_building_type')||'').trim()||null,
+  tags:csvTags(fd.get('site_tags')),
+  commissioning_date:String(fd.get('commissioning_date')||'').trim()||null,
+  analysis_settings:{
+    baseline_days:Math.max(3,Math.min(365,Number(fd.get('baseline_days'))||14)),
+    min_data_coverage_percent:Math.max(50,Math.min(100,Number(fd.get('min_data_coverage_percent'))||85)),
+    trend_analysis:fd.get('trend_analysis')==='on',
+    correlation_analysis:fd.get('correlation_analysis')==='on',
+    energy_analysis:fd.get('energy_analysis')==='on',
+    data_quality_analysis:fd.get('data_quality_analysis')==='on',
+    report_frequency:String(fd.get('report_frequency')||'weekly')
+  }
+};
  let savedSite;
  if(siteId){
    const {data:row,error}=await db.from('sites').update(sitePayload).eq('id',siteId).select().single(); if(error)throw error; savedSite=row;
@@ -123,11 +200,25 @@ async function saveSiteConfiguration(form,siteId=''){
  const ids=fd.getAll('sensor_id'),names=fd.getAll('sensor_name'),metrics=fd.getAll('sensor_metric'),units=fd.getAll('sensor_unit'),topics=fd.getAll('sensor_topic'),stales=fd.getAll('sensor_stale'),deletes=fd.getAll('sensor_delete');
  const rows=[...form.querySelectorAll('.sensor-editor-row')];
  for(let index=0;index<rows.length;index++){
-   const row=rows[index],id=row.querySelector('[name="sensor_id"]').value,name=row.querySelector('[name="sensor_name"]').value.trim(),metric=row.querySelector('[name="sensor_metric"]').value.trim(),unit=row.querySelector('[name="sensor_unit"]').value.trim(),topic=row.querySelector('[name="sensor_topic"]').value.trim(),stale=Number(row.querySelector('[name="sensor_stale"]').value)||900,del=row.querySelector('[name="sensor_delete"]').checked;
+   const row=rows[index],
+    id=row.querySelector('[name="sensor_id"]').value,
+    name=row.querySelector('[name="sensor_name"]').value.trim(),
+    metric=row.querySelector('[name="sensor_metric"]').value.trim(),
+    unit=row.querySelector('[name="sensor_unit"]').value.trim(),
+    category=row.querySelector('[name="sensor_category"]').value.trim(),
+    topic=row.querySelector('[name="sensor_topic"]').value.trim(),
+    minRaw=row.querySelector('[name="sensor_expected_min"]').value,
+    maxRaw=row.querySelector('[name="sensor_expected_max"]').value,
+    stale=Number(row.querySelector('[name="sensor_stale"]').value)||900,
+    analysisEnabled=row.querySelector('[name="sensor_analysis_enabled"]').checked,
+    description=row.querySelector('[name="sensor_description"]').value.trim(),
+    del=row.querySelector('[name="sensor_delete"]').checked;
    if(id&&del){const {error}=await db.from('sensors').delete().eq('id',id);if(error)throw error;continue;}
    if(!name&&!metric&&!topic)continue;
    if(!name||!metric||!unit)throw new Error('Alle målepunkter må ha navn, metric og enhet.');
-   const payload={organization_id:oid,site_id:savedSite.id,integration_id:integration?.id||null,name,metric,unit,source_topic:topic||null,stale_after_seconds:stale};
+   const expectedMin=minRaw===''?null:Number(minRaw),expectedMax=maxRaw===''?null:Number(maxRaw);
+   if(expectedMin!==null&&expectedMax!==null&&expectedMin>expectedMax)throw new Error('Forventet min kan ikke være høyere enn forventet maks for '+name+'.');
+   const payload={organization_id:oid,site_id:savedSite.id,integration_id:integration?.id||null,name,metric,unit,category:category||null,source_topic:topic||null,stale_after_seconds:stale,expected_min:expectedMin,expected_max:expectedMax,analysis_enabled:analysisEnabled,description:description||null};
    if(id){const {error}=await db.from('sensors').update(payload).eq('id',id);if(error)throw error;}
    else{const {error}=await db.from('sensors').insert(payload);if(error)throw error;}
  }
