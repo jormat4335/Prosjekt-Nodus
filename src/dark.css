@@ -218,3 +218,34 @@ footer{border-color:#2a333e;color:#758595}
 .connection-pill.configured,.connection-pill.testing{background:#27261d;border-color:#5b5436;color:#d4be7e}
 .connection-pill.error,.connection-pill.disconnected{background:#34201e;border-color:#70443e;color:#e0a099}
 .connection-pill.not_configured{background:#202833;border-color:#35424f;color:#90a0ae}
+
+
+/* Advanced configuration dark theme */
+.config-health{
+  background:#171f26;
+  border-color:#30404e;
+  color:#dfe7ee;
+}
+.config-health>span,.section-hint{color:#778999}
+.config-health small{color:#8fa0ae}
+.config-health i{background:#202a33}
+.config-health i:after{background:#6f9ac4}
+.analysis-config-grid article{
+  background:#181f26;
+  border-color:#2d3844;
+}
+.analysis-config-grid small,.analysis-toggles small{color:#8f9eaa}
+.analysis-toggles label{
+  background:#181f26;
+  border-color:#2d3844;
+}
+.analysis-toggles label:has(input:checked){
+  background:#1b252e;
+  border-color:#3e566c;
+}
+.sensor-analysis-fields{border-color:#2d3742}
+.site-tags span{
+  background:#202a33;
+  border-color:#33404c;
+  color:#9eafbf;
+}
