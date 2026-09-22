@@ -186,3 +186,20 @@ footer{border-color:#2a333e;color:#758595}
 .engine-core strong{color:#edf3f8}
 .engine-lanes article>span{background:#222e39;color:#8fb3d4}
 .engine-lanes p{color:#81909e}
+
+
+/* Recommendations */
+.recommendation-card{background:linear-gradient(180deg,#1b2229,#181e24);border-color:#2b3540}
+.recommendation-card.high{border-color:#5a3b37}
+.recommendation-card.medium{border-color:#51462f}
+.recommendation-card.low{border-color:#30483d}
+.recommendation-index{background:#222e39;color:#9fc0df}
+.recommendation-card h3{color:#edf3f8}
+.recommendation-reason{color:#8f9ca8}
+.recommendation-action{background:#151c22;border-color:#2d3944}
+.recommendation-action>span{color:#7595b1}
+.recommendation-action p{color:#c0cad3}
+.recommendation-priority.medium{background:#31291c;color:#e2bd74}
+.recommendation-priority.high{background:#34201e;color:#e0a099}
+.recommendation-priority.low{background:#1b2a23;color:#7fc198}
+.onsite-flag{color:#8eb8dc}
