@@ -1,0 +1,187 @@
+/* Smartdrift flat modern card treatment */
+
+/* Shared interactive surfaces */
+.site-card,
+.report-card,
+.finding-hub-card,
+.analysis-toggles label,
+.integration,
+.method-detail-grid article {
+  background-image:none!important;
+  box-shadow:none!important;
+  border-radius:8px!important;
+  transition:border-color .14s ease,background-color .14s ease,transform .14s ease!important;
+}
+
+.site-card:hover,
+.report-card:hover,
+.finding-hub-card:hover {
+  transform:translateY(-1px)!important;
+  box-shadow:none!important;
+}
+
+/* More readable type throughout cards */
+.site-card h3,
+.report-card h3,
+.finding-hub-card h3,
+.integration h2,
+.method-detail-grid h3 {
+  font-weight:650!important;
+  letter-spacing:-.15px!important;
+}
+
+.site-card p,
+.report-card p,
+.finding-hub-card p,
+.integration p,
+.method-detail-grid p {
+  font-size:11px!important;
+  line-height:1.65!important;
+}
+
+.site-card-kpis strong,
+.report-card-meta strong {
+  font-weight:650!important;
+}
+
+.site-card-link {
+  font-weight:650!important;
+}
+
+/* Light mode: quiet neutral cards */
+html[data-theme="light"] .site-card,
+html[data-theme="light"] .report-card,
+html[data-theme="light"] .finding-hub-card,
+html[data-theme="light"] .analysis-toggles label,
+html[data-theme="light"] .integration,
+html[data-theme="light"] .method-detail-grid article {
+  background:#fff!important;
+  border-color:#d8e0e6!important;
+  color:#22303b!important;
+}
+
+html[data-theme="light"] .site-card:hover,
+html[data-theme="light"] .report-card:hover,
+html[data-theme="light"] .finding-hub-card:hover {
+  background:#f8fafb!important;
+  border-color:#aebcc8!important;
+}
+
+html[data-theme="light"] .site-card h3,
+html[data-theme="light"] .report-card h3,
+html[data-theme="light"] .finding-hub-card h3,
+html[data-theme="light"] .integration h2,
+html[data-theme="light"] .method-detail-grid h3 {
+  color:#1e2a34!important;
+}
+
+html[data-theme="light"] .site-card p,
+html[data-theme="light"] .report-card p,
+html[data-theme="light"] .finding-hub-card p,
+html[data-theme="light"] .integration p,
+html[data-theme="light"] .method-detail-grid p {
+  color:#586a78!important;
+}
+
+html[data-theme="light"] .site-card-kpis span,
+html[data-theme="light"] .report-card-meta span {
+  color:#6f7f8c!important;
+}
+
+html[data-theme="light"] .site-card-kpis strong,
+html[data-theme="light"] .report-card-meta strong,
+html[data-theme="light"] .site-card-link {
+  color:#263744!important;
+}
+
+html[data-theme="light"] .site-score,
+html[data-theme="light"] .site-tags span,
+html[data-theme="light"] .tag {
+  background:#f1f4f6!important;
+  border-color:#d9e1e6!important;
+  color:#566977!important;
+}
+
+html[data-theme="light"] .analysis-toggles label:has(input:checked) {
+  background:#f3f6f8!important;
+  border-color:#aebcc8!important;
+}
+
+/* Dark mode: charcoal, flat and almost monochrome */
+html[data-theme="dark"] .site-card,
+html[data-theme="dark"] .report-card,
+html[data-theme="dark"] .finding-hub-card,
+html[data-theme="dark"] .analysis-toggles label,
+html[data-theme="dark"] .integration,
+html[data-theme="dark"] .method-detail-grid article {
+  background:#1a1f25!important;
+  border-color:#303840!important;
+  color:#eef2f5!important;
+}
+
+html[data-theme="dark"] .site-card:hover,
+html[data-theme="dark"] .report-card:hover,
+html[data-theme="dark"] .finding-hub-card:hover {
+  background:#1d232a!important;
+  border-color:#4a5661!important;
+}
+
+html[data-theme="dark"] .site-card h3,
+html[data-theme="dark"] .report-card h3,
+html[data-theme="dark"] .finding-hub-card h3,
+html[data-theme="dark"] .integration h2,
+html[data-theme="dark"] .method-detail-grid h3 {
+  color:#f4f6f8!important;
+}
+
+html[data-theme="dark"] .site-card p,
+html[data-theme="dark"] .report-card p,
+html[data-theme="dark"] .finding-hub-card p,
+html[data-theme="dark"] .integration p,
+html[data-theme="dark"] .method-detail-grid p {
+  color:#b2bcc5!important;
+}
+
+html[data-theme="dark"] .site-card-kpis span,
+html[data-theme="dark"] .report-card-meta span {
+  color:#98a4af!important;
+}
+
+html[data-theme="dark"] .site-card-kpis strong,
+html[data-theme="dark"] .report-card-meta strong,
+html[data-theme="dark"] .site-card-link {
+  color:#e8edf1!important;
+}
+
+html[data-theme="dark"] .site-score,
+html[data-theme="dark"] .site-score.warning,
+html[data-theme="dark"] .site-score.normal,
+html[data-theme="dark"] .site-tags span,
+html[data-theme="dark"] .tag {
+  background:#22282e!important;
+  border-color:#353d45!important;
+  color:#b6c0c9!important;
+}
+
+html[data-theme="dark"] .analysis-toggles label:has(input:checked) {
+  background:#20262c!important;
+  border-color:#4a5661!important;
+}
+
+/* Severity is communicated by a small accent, not by a full colored card */
+html[data-theme="dark"] .finding-hub-card.warning,
+html[data-theme="dark"] .finding-hub-card.critical,
+html[data-theme="dark"] .finding-hub-card.normal,
+html[data-theme="dark"] .finding-hub-card.info,
+html[data-theme="light"] .finding-hub-card.warning,
+html[data-theme="light"] .finding-hub-card.critical,
+html[data-theme="light"] .finding-hub-card.normal,
+html[data-theme="light"] .finding-hub-card.info {
+  background-image:none!important;
+}
+
+/* Slightly stronger general readability */
+html[data-theme="dark"] .muted { color:#9ba7b2!important; }
+html[data-theme="dark"] p { color:#a8b2bb; }
+html[data-theme="light"] .muted { color:#6f7f8b!important; }
+html[data-theme="light"] p { color:#5d6e7a; }
