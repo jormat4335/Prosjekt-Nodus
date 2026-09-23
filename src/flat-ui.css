@@ -1,187 +1,220 @@
-/* Smartdrift flat modern card treatment */
+/* Smartdrift flat modern surface system */
 
-/* Shared interactive surfaces */
+/* Global readability */
+html[data-theme="dark"] body{color:#edf1f4!important}
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] strong{color:#f2f5f7!important}
+html[data-theme="dark"] p{color:#b7c0c8!important}
+html[data-theme="dark"] .muted,
+html[data-theme="dark"] small{color:#9ca8b3!important}
+html[data-theme="light"] body{color:#202b34!important}
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] strong{color:#1d2831!important}
+html[data-theme="light"] p{color:#52636f!important}
+html[data-theme="light"] .muted,
+html[data-theme="light"] small{color:#6a7a86!important}
+
+/* All primary card/surface types: no gradients, no glow */
 .site-card,
 .report-card,
 .finding-hub-card,
+.analysis-stats article,
 .analysis-toggles label,
+.analysis-config-grid article,
 .integration,
-.method-detail-grid article {
+.method-grid article,
+.method-detail-grid article,
+.engine-lanes article,
+.course-card,
+.energy-summary-grid article,
+.course-kpis div,
+.config-health,
+.sensor-editor-row,
+.finding-card,
+.finding-action,
+.component-info {
   background-image:none!important;
   box-shadow:none!important;
-  border-radius:8px!important;
-  transition:border-color .14s ease,background-color .14s ease,transform .14s ease!important;
+  border-radius:7px!important;
+  transition:border-color .14s ease,background-color .14s ease!important;
 }
 
 .site-card:hover,
 .report-card:hover,
-.finding-hub-card:hover {
-  transform:translateY(-1px)!important;
+.finding-hub-card:hover,
+.insight-row:hover {
+  transform:none!important;
   box-shadow:none!important;
 }
 
-/* More readable type throughout cards */
+/* Clickable rows are also flat cards */
+.insight-row{
+  border-radius:0!important;
+  box-shadow:none!important;
+  filter:none!important;
+  transform:none!important;
+  font-size:12px!important;
+}
+.insight-copy strong{font-size:12px!important;font-weight:650!important;line-height:1.45!important}
+.insight-copy small{font-size:10px!important;line-height:1.5!important}
+.row-arrow{opacity:.75!important}
+
+/* Typography inside cards */
 .site-card h3,
 .report-card h3,
 .finding-hub-card h3,
 .integration h2,
-.method-detail-grid h3 {
+.method-detail-grid h3,
+.analysis-stats strong{
   font-weight:650!important;
   letter-spacing:-.15px!important;
 }
-
 .site-card p,
 .report-card p,
 .finding-hub-card p,
 .integration p,
-.method-detail-grid p {
-  font-size:11px!important;
+.method-detail-grid p{
+  font-size:11.5px!important;
   line-height:1.65!important;
 }
-
 .site-card-kpis strong,
-.report-card-meta strong {
-  font-weight:650!important;
-}
+.report-card-meta strong{font-weight:650!important}
+.site-card-link{font-weight:650!important}
 
-.site-card-link {
-  font-weight:650!important;
-}
-
-/* Light mode: quiet neutral cards */
+/* LIGHT: neutral flat surfaces */
 html[data-theme="light"] .site-card,
 html[data-theme="light"] .report-card,
 html[data-theme="light"] .finding-hub-card,
+html[data-theme="light"] .analysis-stats article,
 html[data-theme="light"] .analysis-toggles label,
+html[data-theme="light"] .analysis-config-grid article,
 html[data-theme="light"] .integration,
-html[data-theme="light"] .method-detail-grid article {
-  background:#fff!important;
-  border-color:#d8e0e6!important;
-  color:#22303b!important;
+html[data-theme="light"] .method-grid article,
+html[data-theme="light"] .method-detail-grid article,
+html[data-theme="light"] .engine-lanes article,
+html[data-theme="light"] .course-card,
+html[data-theme="light"] .energy-summary-grid article,
+html[data-theme="light"] .course-kpis div,
+html[data-theme="light"] .config-health,
+html[data-theme="light"] .sensor-editor-row,
+html[data-theme="light"] .finding-card,
+html[data-theme="light"] .finding-action,
+html[data-theme="light"] .component-info{
+  background:#ffffff!important;
+  border-color:#d7dee4!important;
+  color:#23313b!important;
 }
-
 html[data-theme="light"] .site-card:hover,
 html[data-theme="light"] .report-card:hover,
-html[data-theme="light"] .finding-hub-card:hover {
-  background:#f8fafb!important;
-  border-color:#aebcc8!important;
+html[data-theme="light"] .finding-hub-card:hover{
+  background:#f7f8f9!important;
+  border-color:#aeb9c2!important;
 }
-
-html[data-theme="light"] .site-card h3,
-html[data-theme="light"] .report-card h3,
-html[data-theme="light"] .finding-hub-card h3,
-html[data-theme="light"] .integration h2,
-html[data-theme="light"] .method-detail-grid h3 {
-  color:#1e2a34!important;
+html[data-theme="light"] .insight-row{
+  background:#ffffff!important;
+  border-color:#e0e5e9!important;
+  color:#26343e!important;
 }
-
-html[data-theme="light"] .site-card p,
-html[data-theme="light"] .report-card p,
-html[data-theme="light"] .finding-hub-card p,
-html[data-theme="light"] .integration p,
-html[data-theme="light"] .method-detail-grid p {
-  color:#586a78!important;
-}
-
+html[data-theme="light"] .insight-row:hover{background:#f6f7f8!important}
+html[data-theme="light"] .insight-copy strong{color:#21303a!important}
+html[data-theme="light"] .insight-copy small{color:#687985!important}
+html[data-theme="light"] .analysis-stats span,
+html[data-theme="light"] .analysis-stats small,
 html[data-theme="light"] .site-card-kpis span,
-html[data-theme="light"] .report-card-meta span {
-  color:#6f7f8c!important;
-}
-
+html[data-theme="light"] .report-card-meta span{color:#667782!important}
+html[data-theme="light"] .analysis-stats strong,
 html[data-theme="light"] .site-card-kpis strong,
 html[data-theme="light"] .report-card-meta strong,
-html[data-theme="light"] .site-card-link {
-  color:#263744!important;
-}
-
+html[data-theme="light"] .site-card-link{color:#22323d!important}
 html[data-theme="light"] .site-score,
+html[data-theme="light"] .site-score.warning,
+html[data-theme="light"] .site-score.normal,
 html[data-theme="light"] .site-tags span,
-html[data-theme="light"] .tag {
-  background:#f1f4f6!important;
-  border-color:#d9e1e6!important;
-  color:#566977!important;
+html[data-theme="light"] .tag,
+html[data-theme="light"] .severity{
+  background:#f0f2f4!important;
+  border-color:#d7dde2!important;
+  color:#52636f!important;
+}
+html[data-theme="light"] .analysis-toggles label:has(input:checked){
+  background:#f4f5f6!important;
+  border-color:#aeb9c2!important;
 }
 
-html[data-theme="light"] .analysis-toggles label:has(input:checked) {
-  background:#f3f6f8!important;
-  border-color:#aebcc8!important;
-}
-
-/* Dark mode: charcoal, flat and almost monochrome */
+/* DARK: monochrome charcoal surfaces */
 html[data-theme="dark"] .site-card,
 html[data-theme="dark"] .report-card,
 html[data-theme="dark"] .finding-hub-card,
+html[data-theme="dark"] .analysis-stats article,
 html[data-theme="dark"] .analysis-toggles label,
+html[data-theme="dark"] .analysis-config-grid article,
 html[data-theme="dark"] .integration,
-html[data-theme="dark"] .method-detail-grid article {
-  background:#1a1f25!important;
-  border-color:#303840!important;
-  color:#eef2f5!important;
+html[data-theme="dark"] .method-grid article,
+html[data-theme="dark"] .method-detail-grid article,
+html[data-theme="dark"] .engine-lanes article,
+html[data-theme="dark"] .course-card,
+html[data-theme="dark"] .energy-summary-grid article,
+html[data-theme="dark"] .course-kpis div,
+html[data-theme="dark"] .config-health,
+html[data-theme="dark"] .sensor-editor-row,
+html[data-theme="dark"] .finding-card,
+html[data-theme="dark"] .finding-action,
+html[data-theme="dark"] .component-info{
+  background:#1b2025!important;
+  border-color:#30373e!important;
+  color:#edf1f4!important;
 }
-
 html[data-theme="dark"] .site-card:hover,
 html[data-theme="dark"] .report-card:hover,
-html[data-theme="dark"] .finding-hub-card:hover {
-  background:#1d232a!important;
-  border-color:#4a5661!important;
+html[data-theme="dark"] .finding-hub-card:hover{
+  background:#1e2328!important;
+  border-color:#4b555e!important;
 }
-
-html[data-theme="dark"] .site-card h3,
-html[data-theme="dark"] .report-card h3,
-html[data-theme="dark"] .finding-hub-card h3,
-html[data-theme="dark"] .integration h2,
-html[data-theme="dark"] .method-detail-grid h3 {
-  color:#f4f6f8!important;
+html[data-theme="dark"] .insight-row{
+  background:#1b2025!important;
+  border-color:#2d343b!important;
+  color:#e9edf0!important;
 }
-
-html[data-theme="dark"] .site-card p,
-html[data-theme="dark"] .report-card p,
-html[data-theme="dark"] .finding-hub-card p,
-html[data-theme="dark"] .integration p,
-html[data-theme="dark"] .method-detail-grid p {
-  color:#b2bcc5!important;
-}
-
+html[data-theme="dark"] .insight-row:hover{background:#20262b!important}
+html[data-theme="dark"] .insight-copy strong{color:#eef2f5!important}
+html[data-theme="dark"] .insight-copy small{color:#a1adb7!important}
+html[data-theme="dark"] .analysis-stats span,
+html[data-theme="dark"] .analysis-stats small,
 html[data-theme="dark"] .site-card-kpis span,
-html[data-theme="dark"] .report-card-meta span {
-  color:#98a4af!important;
-}
-
+html[data-theme="dark"] .report-card-meta span{color:#9ba7b1!important}
+html[data-theme="dark"] .analysis-stats strong,
 html[data-theme="dark"] .site-card-kpis strong,
 html[data-theme="dark"] .report-card-meta strong,
-html[data-theme="dark"] .site-card-link {
-  color:#e8edf1!important;
-}
-
+html[data-theme="dark"] .site-card-link{color:#edf1f4!important}
 html[data-theme="dark"] .site-score,
 html[data-theme="dark"] .site-score.warning,
 html[data-theme="dark"] .site-score.normal,
 html[data-theme="dark"] .site-tags span,
-html[data-theme="dark"] .tag {
-  background:#22282e!important;
-  border-color:#353d45!important;
-  color:#b6c0c9!important;
+html[data-theme="dark"] .tag,
+html[data-theme="dark"] .severity{
+  background:#242a30!important;
+  border-color:#383f46!important;
+  color:#c1c9d0!important;
+}
+html[data-theme="dark"] .analysis-toggles label:has(input:checked){
+  background:#20252a!important;
+  border-color:#505962!important;
 }
 
-html[data-theme="dark"] .analysis-toggles label:has(input:checked) {
-  background:#20262c!important;
-  border-color:#4a5661!important;
-}
+/* Keep severity visible only as a small dot/accent */
+.signal-dot.warning{background:#c79a49!important;box-shadow:none!important}
+.signal-dot.critical{background:#c96859!important;box-shadow:none!important}
+.signal-dot.normal{background:#5fa477!important;box-shadow:none!important}
+.signal-dot.info,.signal-dot.unknown{background:#73889b!important;box-shadow:none!important}
+.finding-hub-card.warning:before{background:#c79a49!important}
+.finding-hub-card.critical:before{background:#c96859!important}
+.finding-hub-card.normal:before{background:#5fa477!important}
+.finding-hub-card.info:before,.finding-hub-card.unknown:before{background:#73889b!important}
 
-/* Severity is communicated by a small accent, not by a full colored card */
-html[data-theme="dark"] .finding-hub-card.warning,
-html[data-theme="dark"] .finding-hub-card.critical,
-html[data-theme="dark"] .finding-hub-card.normal,
-html[data-theme="dark"] .finding-hub-card.info,
-html[data-theme="light"] .finding-hub-card.warning,
-html[data-theme="light"] .finding-hub-card.critical,
-html[data-theme="light"] .finding-hub-card.normal,
-html[data-theme="light"] .finding-hub-card.info {
-  background-image:none!important;
-}
-
-/* Slightly stronger general readability */
-html[data-theme="dark"] .muted { color:#9ba7b2!important; }
-html[data-theme="dark"] p { color:#a8b2bb; }
-html[data-theme="light"] .muted { color:#6f7f8b!important; }
-html[data-theme="light"] p { color:#5d6e7a; }
+/* Remove decorative gradients from surrounding clickable areas */
+html[data-theme="dark"] .method-grid,
+html[data-theme="light"] .method-grid{background:transparent!important}
