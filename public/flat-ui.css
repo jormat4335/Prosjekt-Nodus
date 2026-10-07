@@ -393,3 +393,238 @@ html[data-theme="dark"] .future{
 
 html[data-theme="light"] .method-grid,
 html[data-theme="dark"] .method-grid{background:transparent!important}
+
+
+/* LIGHT MODE PRINT - deterministic PDF theme */
+@media print {
+  html[data-theme="light"],
+  html[data-theme="light"] body {
+    background:#ffffff!important;
+    color:#1e2933!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+
+  html[data-theme="light"] .printable-report {
+    background:#ffffff!important;
+    color:#1e2933!important;
+    border-color:#d8dee4!important;
+  }
+
+  html[data-theme="light"] .printable-report .report-toolbar {
+    background:#f6f7f8!important;
+    border-bottom-color:#d8dee4!important;
+    color:#1e2933!important;
+  }
+  html[data-theme="light"] .printable-report .report-toolbar h2,
+  html[data-theme="light"] .printable-report h1,
+  html[data-theme="light"] .printable-report h2,
+  html[data-theme="light"] .printable-report h3,
+  html[data-theme="light"] .printable-report h4,
+  html[data-theme="light"] .printable-report strong {
+    color:#18222b!important;
+  }
+  html[data-theme="light"] .printable-report .report-toolbar p,
+  html[data-theme="light"] .printable-report p,
+  html[data-theme="light"] .printable-report li {
+    color:#465563!important;
+  }
+  html[data-theme="light"] .printable-report small,
+  html[data-theme="light"] .printable-report .muted {
+    color:#6c7a86!important;
+  }
+  html[data-theme="light"] .printable-report .eyebrow {
+    color:#4f7598!important;
+  }
+
+  html[data-theme="light"] .printable-report .report-executive {
+    background:#f3f6f8!important;
+    color:#273744!important;
+    border-color:#d4dfe6!important;
+    border-left-color:#668bab!important;
+  }
+  html[data-theme="light"] .printable-report .report-executive>span {
+    color:#4f7598!important;
+  }
+  html[data-theme="light"] .printable-report .report-executive p {
+    color:#394a58!important;
+  }
+
+  html[data-theme="light"] .printable-report .energy-summary-grid article,
+  html[data-theme="light"] .printable-report .course-card,
+  html[data-theme="light"] .printable-report .course-kpis div,
+  html[data-theme="light"] .printable-report .finding-card,
+  html[data-theme="light"] .printable-report .verification-sequence>div,
+  html[data-theme="light"] .printable-report .recommendation-card,
+  html[data-theme="light"] .printable-report .report-document-meta>div {
+    background:#ffffff!important;
+    color:#26343f!important;
+    border-color:#d9e0e5!important;
+  }
+
+  html[data-theme="light"] .printable-report .course-card.normal,
+  html[data-theme="light"] .printable-report .course-card.warning,
+  html[data-theme="light"] .printable-report .energy-summary-grid .energy-warn {
+    background:#ffffff!important;
+    border-color:#d9e0e5!important;
+  }
+
+  html[data-theme="light"] .printable-report .energy-summary-grid span,
+  html[data-theme="light"] .printable-report .course-kpis span,
+  html[data-theme="light"] .printable-report .delta-trend>span,
+  html[data-theme="light"] .printable-report .report-document-meta span {
+    color:#667581!important;
+  }
+  html[data-theme="light"] .printable-report .energy-summary-grid strong,
+  html[data-theme="light"] .printable-report .course-kpis strong,
+  html[data-theme="light"] .printable-report .course-card h3,
+  html[data-theme="light"] .printable-report .report-document-meta strong {
+    color:#1e2a34!important;
+  }
+  html[data-theme="light"] .printable-report .energy-summary-grid small,
+  html[data-theme="light"] .printable-report .delta-trend small {
+    color:#63727e!important;
+  }
+  html[data-theme="light"] .printable-report .delta-trend {
+    border-color:#dbe2e7!important;
+  }
+  html[data-theme="light"] .printable-report .trend-line {
+    background:#e3e8ec!important;
+  }
+  html[data-theme="light"] .printable-report .trend-line i {
+    background:#668bab!important;
+  }
+
+  html[data-theme="light"] .printable-report .finding-card h3,
+  html[data-theme="light"] .printable-report .finding-card strong {
+    color:#1c2730!important;
+  }
+  html[data-theme="light"] .printable-report .finding-card p {
+    color:#465563!important;
+  }
+  html[data-theme="light"] .printable-report .finding-action,
+  html[data-theme="light"] .printable-report .component-info,
+  html[data-theme="light"] .printable-report .hypothesis-box,
+  html[data-theme="light"] .printable-report .recommendation-action,
+  html[data-theme="light"] .printable-report .report-content {
+    background:#f6f7f8!important;
+    color:#354551!important;
+    border-color:#d9e0e5!important;
+  }
+  html[data-theme="light"] .printable-report .finding-action p,
+  html[data-theme="light"] .printable-report .component-info p,
+  html[data-theme="light"] .printable-report .hypothesis-box p,
+  html[data-theme="light"] .printable-report .recommendation-action p,
+  html[data-theme="light"] .printable-report .report-content {
+    color:#3f4f5c!important;
+  }
+
+  html[data-theme="light"] .printable-report .report-assessment {
+    background:#ffffff!important;
+    border-color:#d8e0e5!important;
+  }
+  html[data-theme="light"] .printable-report .report-assessment.warning,
+  html[data-theme="light"] .printable-report .report-assessment.critical,
+  html[data-theme="light"] .printable-report .report-assessment.normal {
+    border-color:#d8e0e5!important;
+  }
+  html[data-theme="light"] .printable-report .assessment-lead {
+    background:#f6f7f8!important;
+  }
+  html[data-theme="light"] .printable-report .assessment-lead h3 {
+    color:#1c2730!important;
+  }
+  html[data-theme="light"] .printable-report .assessment-lead p {
+    color:#465563!important;
+  }
+  html[data-theme="light"] .printable-report .assessment-kpis {
+    background:#dce2e7!important;
+    border-color:#dce2e7!important;
+  }
+  html[data-theme="light"] .printable-report .assessment-kpis>div {
+    background:#ffffff!important;
+  }
+  html[data-theme="light"] .printable-report .assessment-kpis span {
+    color:#697884!important;
+  }
+  html[data-theme="light"] .printable-report .assessment-kpis strong {
+    color:#1f2b34!important;
+  }
+
+  html[data-theme="light"] .printable-report .verification-sequence>div>span,
+  html[data-theme="light"] .printable-report .recommendation-index {
+    background:#edf2f5!important;
+    color:#4e7393!important;
+  }
+  html[data-theme="light"] .printable-report .verification-sequence strong,
+  html[data-theme="light"] .printable-report .recommendation-card h3 {
+    color:#1d2932!important;
+  }
+  html[data-theme="light"] .printable-report .verification-sequence small,
+  html[data-theme="light"] .printable-report .recommendation-reason {
+    color:#53636f!important;
+  }
+  html[data-theme="light"] .printable-report .recommendation-action>span,
+  html[data-theme="light"] .printable-report .hypothesis-box>span {
+    color:#4f7598!important;
+  }
+  html[data-theme="light"] .printable-report .onsite-flag {
+    color:#4f7598!important;
+  }
+
+  html[data-theme="light"] .printable-report .tag,
+  html[data-theme="light"] .printable-report .severity,
+  html[data-theme="light"] .printable-report .recommendation-priority {
+    background:#eef1f3!important;
+    color:#4f5f6b!important;
+    border-color:#d5dce1!important;
+  }
+  html[data-theme="light"] .printable-report .severity.warning,
+  html[data-theme="light"] .printable-report .recommendation-priority.medium {
+    background:#f7f1e5!important;
+    color:#765c25!important;
+    border-color:#dfd0ad!important;
+  }
+  html[data-theme="light"] .printable-report .severity.critical,
+  html[data-theme="light"] .printable-report .recommendation-priority.high {
+    background:#f6eae8!important;
+    color:#864c44!important;
+    border-color:#dfc2bd!important;
+  }
+  html[data-theme="light"] .printable-report .severity.normal,
+  html[data-theme="light"] .printable-report .recommendation-priority.low {
+    background:#eaf3ed!important;
+    color:#406f51!important;
+    border-color:#c9ddcf!important;
+  }
+
+  html[data-theme="light"] .printable-report .report-document-meta {
+    background:#dce2e7!important;
+    border-color:#dce2e7!important;
+  }
+  html[data-theme="light"] .printable-report .report-document-footer {
+    border-top-color:#d8e0e5!important;
+    color:#6b7984!important;
+  }
+
+  html[data-theme="light"] .printable-report .report-section-heading,
+  html[data-theme="light"] .printable-report .report-section-heading *,
+  html[data-theme="light"] .printable-report h1,
+  html[data-theme="light"] .printable-report h2,
+  html[data-theme="light"] .printable-report h3,
+  html[data-theme="light"] .printable-report h4 {
+    background:transparent!important;
+  }
+
+  /* Avoid clipped cards and awkward page breaks in browser PDF export */
+  html[data-theme="light"] .printable-report .energy-summary-grid article,
+  html[data-theme="light"] .printable-report .course-card,
+  html[data-theme="light"] .printable-report .finding-card,
+  html[data-theme="light"] .printable-report .report-assessment,
+  html[data-theme="light"] .printable-report .verification-sequence>div,
+  html[data-theme="light"] .printable-report .recommendation-card,
+  html[data-theme="light"] .printable-report .report-document-meta {
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+}
