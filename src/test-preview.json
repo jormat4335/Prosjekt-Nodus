@@ -6,6 +6,22 @@
       "address": "Testmiljø · simulert teknisk anlegg",
       "is_test": true,
       "description": "Simulert testanlegg med to Belimo Energy Valve-kurser. Ingen fysisk styring eller live-data."
+    },
+    {
+      "id": "test-snowmelt-station",
+      "name": "Bensinstasjon – Snøsmelteanlegg",
+      "customer": "Testkunde",
+      "address": "Bensinstasjon · simulert testmiljø",
+      "system_type": "Snøsmelteanlegg",
+      "building_type": "Bensinstasjon",
+      "tags": [
+        "snøsmelte",
+        "glykol",
+        "oljebrenner",
+        "utendørs"
+      ],
+      "is_test": true,
+      "description": "Simulert snøsmelteanlegg for oppstillings- og kjøreareal ved bensinstasjon. Varmekilde er oljebrenner, med pumpe og reguleringsaktuator mot snøsmeltekurs. Alle verdier er testdata."
     }
   ],
   "integrations": [
@@ -24,6 +40,15 @@
       "kind": "belimo",
       "enabled": true,
       "last_seen_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "id": "snowmelt-bms",
+      "site_id": "test-snowmelt-station",
+      "name": "Snøsmelte SD/MQTT – testkilde",
+      "kind": "mqtt",
+      "enabled": true,
+      "connection_status": "connected",
+      "last_seen_at": "2026-10-07T14:48:00+02:00"
     }
   ],
   "sensors": [
@@ -134,6 +159,204 @@
       "metric": "valve_position",
       "unit": "%",
       "stale_after_seconds": 604800
+    },
+    {
+      "id": "sm-supply",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Turtemperatur",
+      "metric": "supply_temperature",
+      "unit": "°C",
+      "category": "Temperatur",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-return",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Returtemperatur",
+      "metric": "return_temperature",
+      "unit": "°C",
+      "category": "Temperatur",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-dt",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "ΔT tur/retur",
+      "metric": "delta_t",
+      "unit": "K",
+      "category": "Temperatur",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-supply-pressure",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Turtrykk",
+      "metric": "supply_pressure",
+      "unit": "bar",
+      "category": "Trykk",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-return-pressure",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Returtrykk",
+      "metric": "return_pressure",
+      "unit": "bar",
+      "category": "Trykk",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-dp",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Differansetrykk",
+      "metric": "differential_pressure",
+      "unit": "bar",
+      "category": "Differansetrykk",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-flow",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Flow snøsmeltekurs",
+      "metric": "flow",
+      "unit": "m³/h",
+      "category": "Flow",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-actuator",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Reguleringsaktuator",
+      "metric": "valve_position",
+      "unit": "%",
+      "category": "Ventilposisjon",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-setpoint",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Turtemperatur settpunkt",
+      "metric": "supply_setpoint",
+      "unit": "°C",
+      "category": "Temperatur",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-pump-run",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Sirkulasjonspumpe drift",
+      "metric": "pump_run",
+      "unit": "bool",
+      "category": "Pumpedrift",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-burner-run",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Oljebrenner drift",
+      "metric": "burner_run",
+      "unit": "bool",
+      "category": "Drift",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-burner-alarm",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Oljebrenner alarm",
+      "metric": "burner_alarm",
+      "unit": "bool",
+      "category": "Alarm",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-burner-starts",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Brennerstarter siste 2 t",
+      "metric": "burner_starts_2h",
+      "unit": "stk",
+      "category": "Drift",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-outdoor",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Utetemperatur",
+      "metric": "outdoor_temperature",
+      "unit": "°C",
+      "category": "Temperatur",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-ground",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Bakketemperatur",
+      "metric": "ground_temperature",
+      "unit": "°C",
+      "category": "Temperatur",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-surface",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Overflatetemperatur",
+      "metric": "surface_temperature",
+      "unit": "°C",
+      "category": "Temperatur",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-moisture",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Fukt-/snøsignal",
+      "metric": "moisture_signal",
+      "unit": "bool",
+      "category": "Annet",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
+    },
+    {
+      "id": "sm-power",
+      "site_id": "test-snowmelt-station",
+      "integration_id": "snowmelt-bms",
+      "name": "Beregnet termisk effekt",
+      "metric": "thermal_power",
+      "unit": "kW",
+      "category": "Effekt",
+      "stale_after_seconds": 604800,
+      "analysis_enabled": true
     }
   ],
   "latest_readings": [
@@ -220,6 +443,132 @@
       "value": 88,
       "quality": "good",
       "observed_at": "2026-09-18T11:28:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-supply",
+      "value": 32.8,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-return",
+      "value": 28.9,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-dt",
+      "value": 3.9,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-supply-pressure",
+      "value": 1.7,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-return-pressure",
+      "value": 1.15,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-dp",
+      "value": 0.55,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-flow",
+      "value": 11.8,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-actuator",
+      "value": 92,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-setpoint",
+      "value": 38,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-pump-run",
+      "value": 1,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-burner-run",
+      "value": 1,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-burner-alarm",
+      "value": 0,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-burner-starts",
+      "value": 17,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-outdoor",
+      "value": -2.8,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-ground",
+      "value": 0.9,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-surface",
+      "value": 0.6,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-moisture",
+      "value": 1,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
+    },
+    {
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-power",
+      "value": 53.5,
+      "quality": "good",
+      "observed_at": "2026-10-07T14:48:00+02:00"
     }
   ],
   "alarms": [
@@ -232,6 +581,16 @@
       "severity": "warning",
       "state": "active",
       "occurred_at": "2026-09-18T10:00:00+02:00"
+    },
+    {
+      "id": "snow-test-alarm-1",
+      "site_id": "test-snowmelt-station",
+      "sensor_id": "sm-burner-starts",
+      "title": "Hyppige brennerstarter",
+      "description": "TEST · Oljebrenneren har registrert 17 starter siste 2 timer. Smartdrift ser dette sammen med kontinuerlig varmebehov og høyt reguleringspådrag.",
+      "severity": "warning",
+      "state": "active",
+      "occurred_at": "2026-10-07T14:40:00+02:00"
     }
   ],
   "events": [
@@ -248,6 +607,27 @@
       "kind": "data",
       "message": "Begge Belimo Energy Valve-enheter rapporterer komplette måleverdier.",
       "occurred_at": "2026-09-18T09:00:00+02:00"
+    },
+    {
+      "id": "snow-evt1",
+      "site_id": "test-snowmelt-station",
+      "kind": "analysis",
+      "message": "TEST · Kombinasjon oppdaget: 92 % reguleringspådrag, brenner i drift og turtemperatur 5,2 K under settpunkt.",
+      "occurred_at": "2026-10-07T14:42:00+02:00"
+    },
+    {
+      "id": "snow-evt2",
+      "site_id": "test-snowmelt-station",
+      "kind": "analysis",
+      "message": "TEST · Differansetrykket har økt samtidig som flow har falt mot tidligere sammenlignbar drift.",
+      "occurred_at": "2026-10-07T14:35:00+02:00"
+    },
+    {
+      "id": "snow-evt3",
+      "site_id": "test-snowmelt-station",
+      "kind": "data",
+      "message": "TEST · Alle 18 målepunkter rapporterer gyldige verdier fra snøsmelteanlegget.",
+      "occurred_at": "2026-10-07T14:30:00+02:00"
     }
   ],
   "reports": [
@@ -364,6 +744,116 @@
           "title": "Følg ΔT og effekt etter utført kontroll",
           "reason": "En enkelt korreksjon bør bekreftes over tid for å se om forholdet mellom flow, ΔT og effekt normaliseres.",
           "action": "Sammenlign minst 3–7 døgn før og etter tiltak under tilsvarende utetemperatur og driftstid. Dokumenter om baseline nærmer seg forventet nivå.",
+          "onsite": false
+        }
+      ]
+    },
+    {
+      "id": "snowmelt-test-report",
+      "title": "Driftsanalyse · Snøsmelteanlegg bensinstasjon",
+      "status": "ready",
+      "site_id": "test-snowmelt-station",
+      "summary": "TEST · Snøsmelteanlegget har aktivt varmebehov, men turtemperaturen når ikke settpunktet selv med høyt reguleringspådrag og oljebrenner i drift. Samtidig ses økende hydraulisk motstand og hyppig brennerstart.",
+      "period_start": "2026-10-01T00:00:00+02:00",
+      "period_end": "2026-10-07T14:48:00+02:00",
+      "energy_summary": {
+        "actual_kwh": 1325,
+        "expected_kwh": 1080,
+        "deviation_pct": 22.7,
+        "headline": "245 kWh høyere energibruk enn sammenlignbar snøsmeltedrift",
+        "confidence": "middels"
+      },
+      "courses": [
+        {
+          "id": "snow-main",
+          "name": "Hovedkurs · Snøsmelteflate",
+          "device": "OLJEBRENNER + REGULERINGSKURS",
+          "status": "warning",
+          "power_kw": 53.5,
+          "expected_power_kw": 46,
+          "power_deviation_pct": 16.3,
+          "flow_m3h": 11.8,
+          "delta_t_k": 3.9,
+          "delta_t_7d_start": 5.7,
+          "energy_24h_kwh": 228,
+          "valve_pct": 92,
+          "note": "ΔT er redusert fra 5,7 K til 3,9 K. Samtidig har flow falt, differansetrykket økt og reguleringspådraget ligger høyt."
+        }
+      ],
+      "findings": [
+        {
+          "title": "Turtemperaturen når ikke settpunkt ved høyt varmebehov",
+          "severity": "warning",
+          "component": "supply",
+          "explanation": "TEST · Turtemperaturen er 32,8 °C mot settpunkt 38,0 °C. Reguleringsaktuatoren står 92 % åpen, oljebrenneren er i drift, utetemperaturen er -2,8 °C og fukt-/snøsignalet er aktivt. Kombinasjonen tyder på at varmeleveransen ikke følger behovet.",
+          "check": "Kontroller brennerens reelle effekt og drift, temperatur før/etter varmekilde, shunt-/reguleringsventilens faktiske slag og om settpunktet er realistisk for aktuell utetemperatur.",
+          "illustrative": true
+        },
+        {
+          "title": "Økende hydraulisk motstand samtidig som flow faller",
+          "severity": "warning",
+          "component": "pump",
+          "explanation": "TEST · Differansetrykket er økt til 0,55 bar fra en simulert baseline rundt 0,34 bar, mens flowen har falt fra ca. 14,2 til 11,8 m³/h. Det er et mønster som kan passe med økende motstand i kretsen.",
+          "check": "Kontroller filter/sil, ventiler, reguleringsventil, eventuelle delvis stengte kurser og pumpedrift. Sammenlign fysisk ΔP og flow med instrumentverdiene.",
+          "illustrative": true
+        },
+        {
+          "title": "Oljebrenneren kortsykler under stabilt varmebehov",
+          "severity": "warning",
+          "component": "exchanger",
+          "explanation": "TEST · Det er registrert 17 brennerstarter siste 2 timer samtidig som fuktsignal er aktivt, utetemperaturen er under null og reguleringspådraget er høyt. Ved stabilt varmebehov bør så hyppig start/stopp undersøkes.",
+          "check": "Kontroller brennerhysterese, temperaturregulering, vannvolum, shuntregulering og om brenneren stopper på intern temperaturbegrensning eller annen regulering.",
+          "illustrative": true
+        },
+        {
+          "title": "Svak temperaturrespons i snøsmelteflaten",
+          "severity": "warning",
+          "component": "return",
+          "explanation": "TEST · Etter lengre aktiv snøsmeltedrift ligger bakketemperaturen på 0,9 °C og overflatetemperaturen på 0,6 °C, samtidig som varmebehovet fortsatt er aktivt. Responsen er svakere enn simulert baseline ved tilsvarende vær.",
+          "check": "Verifiser temperaturfølere i bakken, væsketemperatur og flow. Kontroller også om deler av flaten har luft, dårlig sirkulasjon eller ujevn hydraulisk fordeling.",
+          "illustrative": true
+        },
+        {
+          "title": "Pumpe og feltfølere rapporterer konsistente signaler",
+          "severity": "normal",
+          "component": "sensor",
+          "explanation": "TEST · Pumpens driftssignal er aktivt og trykk-/temperatursignalene er innbyrdes plausible. Det reduserer sannsynligheten for at hele avviket skyldes manglende driftssignal eller én åpenbar sensorfeil.",
+          "check": "Ingen umiddelbare tiltak. Bruk signalene som grunnlag for videre verifikasjon.",
+          "illustrative": true
+        }
+      ],
+      "content": "TESTRAPPORT — BENSINSTASJON / SNØSMELTEANLEGG\\n\\nHOVEDKONKLUSJON\\nSnøsmelteanlegget har et tydelig varmebehov: utetemperaturen er -2,8 °C, fukt-/snøsignalet er aktivt og sirkulasjonspumpen går. Til tross for dette ligger turtemperaturen 5,2 K under settpunkt mens reguleringsaktuatoren står 92 % åpen og oljebrenneren er i drift. Smartdrift vurderer derfor at varmeleveransen ikke følger behovet som forventet.\\n\\nHYDRAULIKK\\nTurtrykket er 1,70 bar og returtrykket 1,15 bar, som gir et differansetrykk på 0,55 bar. I simulert sammenlignbar drift lå ΔP rundt 0,34 bar. Samtidig har flow falt fra omtrent 14,2 til 11,8 m³/h. Kombinasjonen kan være forenlig med økt hydraulisk motstand, for eksempel i filter/sil, ventil eller deler av snøsmeltekretsen.\\n\\nVARMELEVERANSE\\nTurtemperaturen er 32,8 °C, retur 28,9 °C og ΔT 3,9 K. Tursettpunktet er 38,0 °C. Høyt aktuatorpådrag kombinert med aktiv brenner og manglende turtemperatur kan skyldes redusert brennereffekt, regulerings-/shuntproblem, feil i varmeoverføring eller hydraulisk begrensning.\\n\\nBRENNERDRIFT\\nOljebrenneren har 17 starter siste 2 timer. Det er høyt for et tidsrom der varmebehovet fremstår relativt stabilt. Hyppig start/stopp kan gi unødvendig energibruk og slitasje og bør vurderes mot hysterese, vannvolum og reguleringsstrategi.\\n\\nSNØSMELTERESPONS\\nBakketemperaturen er 0,9 °C og overflatetemperaturen 0,6 °C. Med aktiv fuktindikasjon og kulde burde temperaturen normalt vise tydelig respons over tid. Dersom responsen fortsetter å være svak, bør sirkulasjon og fordeling i feltet undersøkes.\\n\\nENERGI\\nSimulert energibruk i analyseperioden er 1325 kWh mot baseline 1080 kWh, et avvik på +22,7 %. Dette er ikke dokumentert besparelsespotensial, men et signal om at anlegget bruker mer energi samtidig som ønsket respons er svakere.\\n\\nANBEFALT REKKEFØLGE\\n1. Verifiser tur/returtemperatur, trykk og flow fysisk.\\n2. Kontroller filter/sil og hydraulisk motstand.\\n3. Kontroller reguleringsaktuatorens faktiske slag og shuntfunksjon.\\n4. Kontroller brennerens reelle effekt, start/stopp-årsak og temperaturregulering.\\n5. Følg bakketemperatur og energibruk etter tiltak.\\n\\nAVGRENSNING\\nAlle verdier og funn er simulerte testdata. Smartdrift bruker dem for å demonstrere hvordan sammenhenger mellom flere signaler kan prioriteres for teknisk kontroll.",
+      "recommendations": [
+        {
+          "priority": "high",
+          "category": "Varmeleveranse",
+          "title": "Verifiser hvorfor turtemperaturen ikke når settpunkt",
+          "reason": "Brenneren går og aktuatoren står 92 % åpen, men turtemperaturen er 5,2 K under settpunkt.",
+          "action": "Mål tur/retur fysisk, kontroller brennereffekt, shuntventilens faktiske posisjon og temperaturene på begge sider av varmekilden.",
+          "onsite": true
+        },
+        {
+          "priority": "high",
+          "category": "Hydraulikk",
+          "title": "Kontroller økende motstand i snøsmeltekursen",
+          "reason": "ΔP har økt samtidig som flow har falt mot tidligere sammenlignbar drift.",
+          "action": "Kontroller filter/sil, ventiler, pumpe og eventuelle delvis stengte kurser. Sammenlign manometerverdier og flow mot SD-data.",
+          "onsite": true
+        },
+        {
+          "priority": "medium",
+          "category": "Oljebrenner",
+          "title": "Undersøk 17 brennerstarter på 2 timer",
+          "reason": "Hyppig start/stopp skjer samtidig som varmebehovet fremstår kontinuerlig.",
+          "action": "Kontroller hysterese, regulator, intern temperaturbegrensning, vannvolum og årsak til hver stopp/start.",
+          "onsite": true
+        },
+        {
+          "priority": "medium",
+          "category": "Snøsmelteflate",
+          "title": "Følg temperaturrespons etter hydraulisk kontroll",
+          "reason": "Bakke- og overflatetemperatur responderer svakere enn forventet ved aktiv snøindikasjon.",
+          "action": "Trend bakketemperatur, overflatetemperatur, tur/retur og flow i minst 3–6 timer etter tiltak under sammenlignbart vær.",
           "onsite": false
         }
       ]
